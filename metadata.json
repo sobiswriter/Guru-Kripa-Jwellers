@@ -1,0 +1,6 @@
+{
+  "name": "Aura & Carat | Haute Joaillerie",
+  "description": "Luxury jewelry store with AR virtual try-on for rings and necklaces, high-res diamond zoom, global store locator, and VIP appointment booking.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
