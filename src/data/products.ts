@@ -2,130 +2,169 @@ import { JewelryProduct } from '../types';
 
 export const PRODUCTS: JewelryProduct[] = [
   {
-    id: 'ring-solitaire-elysian',
-    name: 'Elysian Radiant Oval Solitaire',
-    subtitle: '2.5 Carat D-Flawless Oval Diamond on Pavé Band',
+    id: 'gold-royal-punjabi-kada',
+    name: 'Pure 22K Royal Punjabi Gold Kada',
+    subtitle: 'Hand-Engraved Traditional Solid Gold Kada with Lion/Floral Filigree',
+    category: 'kadas',
+    collection: 'Heritage Punjabi Gold Collection',
+    price: 185000,
+    originalPrice: 198000,
+    rating: 4.98,
+    reviewCount: 142,
+    goldWeight: '24.50 grams (approx. 2.1 tola)',
+    purity: '22K BIS 916 Hallmarked Gold',
+    makingCharges: 'Direct In-House Karigar Rate',
+    mainImage: 'https://images.unsplash.com/photo-1611591475196-8579d46e31cb?auto=format&fit=crop&q=80&w=1200',
+    galleryImages: [
+      'https://images.unsplash.com/photo-1611591475196-8579d46e31cb?auto=format&fit=crop&q=80&w=1600',
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=1600'
+    ],
+    highResZoomImage: 'https://images.unsplash.com/photo-1611591475196-8579d46e31cb?auto=format&fit=crop&q=80&w=2400',
+    tryOnType: 'ring',
+    tryOnOverlayImage: 'https://images.unsplash.com/photo-1611591475196-8579d46e31cb?auto=format&fit=crop&q=80&w=800',
+    tryOnScaleDefault: 0.42,
+    description: 'A signature solid Punjabi kada hand-crafted by master goldsmiths in Phagwara. Features traditional floral carving, mirror-polished inner comfort-fit, and genuine 916 BIS Hallmark stamping.',
+    gemstoneSpec: {
+      type: '22K Solid Yellow Gold',
+      weightGrams: 24.5,
+      purity: '22K (91.6% Pure Gold)',
+      cut: 'Hand-Chiseled Karigari',
+      origin: 'Shri Guru Kirpa Phagwara Workshop'
+    },
+    metalsAvailable: [
+      { type: '22k-yellow-gold', label: '22K Yellow Gold (916)', hexColor: '#D4AF37' },
+      { type: 'antique-gold', label: 'Antique Matte Gold', hexColor: '#C5A059' }
+    ],
+    sizesAvailable: ['2.4 (Small)', '2.6 (Medium)', '2.8 (Large)', '2.10 (Extra Large)', 'Custom Wrist Size'],
+    isBestSeller: true,
+    isSpecialCollection: true,
+    inStock: true,
+    engravingSupported: true
+  },
+  {
+    id: 'necklace-bridal-rani-haar',
+    name: 'Maharani 22K Gold Bridal Rani Haar Set',
+    subtitle: 'Exquisite 3-Tier Layered Gold Bridal Necklace with Matching Jhumkas',
+    category: 'necklaces',
+    collection: 'Royal Indian Bridal Heritage',
+    price: 345000,
+    originalPrice: 375000,
+    rating: 5.0,
+    reviewCount: 96,
+    goldWeight: '46.00 grams (approx. 3.9 tola)',
+    purity: '22K BIS 916 Hallmarked',
+    makingCharges: 'Custom Bridal Order Pricing',
+    mainImage: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=1200',
+    galleryImages: [
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=1600',
+      'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=1600'
+    ],
+    highResZoomImage: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=2400',
+    tryOnType: 'necklace',
+    tryOnOverlayImage: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=800',
+    tryOnScaleDefault: 0.52,
+    description: 'Breathtaking handcrafted bridal rani haar featuring intricate meenakari detailing, handcrafted gold ghungroo drops, and fine filigree jaali work. Guaranteed 22 Karat gold with official BIS hallmark certificate.',
+    gemstoneSpec: {
+      type: '22K Hallmarked Gold with Emerald accents',
+      weightGrams: 46.0,
+      purity: '22K (91.6% Pure)',
+      cut: 'Traditional Jadau & Meenakari',
+      origin: 'Sarafan Bazar, Phagwara'
+    },
+    metalsAvailable: [
+      { type: '22k-yellow-gold', label: '22K Yellow Gold (916)', hexColor: '#D4AF37' },
+      { type: 'antique-gold', label: 'Antique Polish Gold', hexColor: '#B8860B' }
+    ],
+    sizesAvailable: ['18 inch (Princess Length)', '22 inch (Rani Haar Length)', '24 inch (Grand Bridal)'],
+    isBestSeller: true,
+    isSpecialCollection: true,
+    inStock: true,
+    engravingSupported: true
+  },
+  {
+    id: 'ring-punjabi-gold-solitaire',
+    name: 'Kundan & Solitaire 22K Gold Engagement Ring',
+    subtitle: 'Classic Hand-Crafted Punjabi Gold Ring with Micro-Prong Detailing',
     category: 'rings',
-    collection: 'The Celestial Solitaire Collection',
-    price: 18500,
-    originalPrice: 21000,
-    rating: 4.95,
-    reviewCount: 128,
+    collection: 'Heritage Punjabi Gold Collection',
+    price: 48500,
+    originalPrice: 54000,
+    rating: 4.94,
+    reviewCount: 118,
+    goldWeight: '6.20 grams',
+    purity: '22K BIS 916 Hallmarked',
     mainImage: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=1200',
     galleryImages: [
       'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=1600',
-      'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&q=80&w=1600',
-      'https://images.unsplash.com/photo-1598560917505-59a3ad559071?auto=format&fit=crop&q=80&w=1600'
+      'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&q=80&w=1600'
     ],
     highResZoomImage: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=2400',
     tryOnType: 'ring',
     tryOnOverlayImage: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=800',
     tryOnScaleDefault: 0.35,
-    description: 'An ethereal masterwork featuring a 2.50ct oval brilliant diamond crowned in a custom platinum hidden halo. Hand-set micro-pavé diamonds line the whisper-thin band to maximize light dispersion.',
+    description: 'An elegant Indian gold ring designed for engagements and daily wear. Cast in rich 22k yellow gold with laser hallmark stamp and smooth inner contour for long-lasting comfort.',
     gemstoneSpec: {
-      type: 'Natural Diamond',
-      carat: 2.50,
-      cut: 'Oval Super Brilliant',
-      clarity: 'FL (Flawless)',
-      color: 'D (Exceptional White+)',
-      origin: 'Ethically Sourced Kimberley Certified, Botswana'
+      type: '22K Gold with Moissanite/Solitaire Center',
+      weightGrams: 6.2,
+      purity: '22K Hallmarked (916)',
+      cut: 'Brilliant Round Facets',
+      origin: 'Phagwara In-House Goldsmith'
     },
     metalsAvailable: [
-      { type: 'platinum', label: 'Platinum 950', hexColor: '#E5E4E2' },
-      { type: '18k-yellow-gold', label: '18K Yellow Gold', hexColor: '#D4AF37' },
+      { type: '22k-yellow-gold', label: '22K Yellow Gold (916)', hexColor: '#D4AF37' },
       { type: 'rose-gold', label: '18K Rose Gold', hexColor: '#E8A798' }
     ],
-    sizesAvailable: ['US 4.5', 'US 5.0', 'US 5.5', 'US 6.0', 'US 6.5', 'US 7.0', 'US 7.5', 'US 8.0'],
+    sizesAvailable: ['Indian Size 10', 'Indian Size 12', 'Indian Size 14', 'Indian Size 16', 'Indian Size 18', 'Indian Size 20'],
     isBestSeller: true,
     isSpecialCollection: true,
     inStock: true,
     engravingSupported: true
   },
   {
-    id: 'necklace-emerald-royale',
-    name: 'Sovereign Colombian Emerald & Diamond Drop',
-    subtitle: '4.8 Carat Royal Emerald with Pear Cut Diamond Halo',
-    category: 'necklaces',
-    collection: 'Elysian Emerald & Royal Sapphire Series',
-    price: 34200,
-    originalPrice: 38000,
-    rating: 4.98,
-    reviewCount: 86,
-    mainImage: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=1200',
+    id: 'earrings-traditional-punjabi-jhumka',
+    name: 'Amritsari Royal 22K Gold Jhumkas',
+    subtitle: 'Classic Dome Jhumkas with Delicate Gold Pearl Drops and Peacock Motifs',
+    category: 'earrings',
+    collection: 'Heritage Punjabi Gold Collection',
+    price: 78000,
+    originalPrice: 85000,
+    rating: 4.96,
+    reviewCount: 88,
+    goldWeight: '10.50 grams',
+    purity: '22K BIS 916 Hallmarked',
+    mainImage: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&q=80&w=1200',
     galleryImages: [
-      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=1600',
-      'https://images.unsplash.com/photo-1611591475196-8579d46e31cb?auto=format&fit=crop&q=80&w=1600'
+      'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&q=80&w=1600'
     ],
-    highResZoomImage: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=2400',
-    tryOnType: 'necklace',
-    tryOnOverlayImage: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=800',
-    tryOnScaleDefault: 0.5,
-    description: 'An iconic heritage pendant suspending a rare 4.80ct Muzo Colombian emerald of vibrant green saturation, framed by a tier of marquise and pear-shaped diamonds in 18k yellow gold.',
+    highResZoomImage: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&q=80&w=2400',
+    description: 'Traditional Punjabi jhumkas featuring delicate filigree lattice bells and hand-strung gold droplets. Lightweight screw-back design ensures comfortable wear for festive celebrations and weddings.',
     gemstoneSpec: {
-      type: 'Muzo Emerald',
-      carat: 4.80,
-      cut: 'Emerald Cut',
-      clarity: 'VVS (Vivid Green Insignia)',
-      color: 'Deep Muzo Green',
-      origin: 'Muzo Mine, Colombia'
+      type: '22K BIS Hallmarked Yellow Gold',
+      weightGrams: 10.5,
+      purity: '22 Karat (916)',
+      cut: 'Traditional Jaali & Filigree',
+      origin: 'Phagwara Workshop'
     },
     metalsAvailable: [
-      { type: '18k-yellow-gold', label: '18K Yellow Gold', hexColor: '#D4AF37' },
-      { type: 'platinum', label: 'Platinum 950', hexColor: '#E5E4E2' }
+      { type: '22k-yellow-gold', label: '22K Yellow Gold (916)', hexColor: '#D4AF37' },
+      { type: 'antique-gold', label: 'Antique Matte Gold', hexColor: '#C5A059' }
     ],
-    sizesAvailable: ['16 inch (Choker)', '18 inch (Princess)', '20 inch (Matinee)'],
-    isBestSeller: true,
-    isSpecialCollection: true,
-    inStock: true,
-    engravingSupported: true
-  },
-  {
-    id: 'ring-sapphire-artdeco',
-    name: 'Art Déco Royal Ceylon Sapphire Ring',
-    subtitle: '3.2 Carat Unheated Blue Sapphire with Baguette Wings',
-    category: 'rings',
-    collection: 'Art Déco Diamond Masterpieces',
-    price: 22600,
-    rating: 4.91,
-    reviewCount: 64,
-    mainImage: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&q=80&w=1200',
-    galleryImages: [
-      'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&q=80&w=1600',
-      'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=1600'
-    ],
-    highResZoomImage: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&q=80&w=2400',
-    tryOnType: 'ring',
-    tryOnOverlayImage: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&q=80&w=800',
-    tryOnScaleDefault: 0.38,
-    description: 'Inspired by 1920s Parisian high architecture, this showpiece presents an unheated 3.20ct Royal Velvet Blue Ceylon sapphire anchored between architectural diamond baguettes.',
-    gemstoneSpec: {
-      type: 'Royal Blue Sapphire',
-      carat: 3.20,
-      cut: 'Cushion Antique Cut',
-      clarity: 'VVS1 (Unheated Natural)',
-      color: 'Royal Velvet Blue',
-      origin: 'Sri Lanka (Ceylon)'
-    },
-    metalsAvailable: [
-      { type: 'platinum', label: 'Platinum 950', hexColor: '#E5E4E2' },
-      { type: '18k-yellow-gold', label: '18K Yellow Gold', hexColor: '#D4AF37' }
-    ],
-    sizesAvailable: ['US 5.0', 'US 6.0', 'US 7.0', 'US 8.0'],
     isNewArrival: true,
-    isSpecialCollection: true,
     inStock: true,
-    engravingSupported: true
+    engravingSupported: false
   },
   {
-    id: 'necklace-lumiere-diamond',
-    name: 'Lumière Diamond Riviera Collar',
-    subtitle: '15.5 Carat Total Weight Graduated Diamond Necklace',
+    id: 'necklace-gold-mangalsutra-pendant',
+    name: 'Auspicious 22K Gold Mangalsutra with Black Beads',
+    subtitle: 'Traditional Punjabi & North Indian Auspicious Gold Pendant with Double Black Bead Chain',
     category: 'necklaces',
-    collection: 'Lumière Vintage Heritage Collection',
-    price: 58000,
-    originalPrice: 65000,
-    rating: 5.0,
-    reviewCount: 42,
+    collection: 'Royal Indian Bridal Heritage',
+    price: 62000,
+    originalPrice: 68000,
+    rating: 4.97,
+    reviewCount: 75,
+    goldWeight: '8.40 grams',
+    purity: '22K BIS 916 Hallmarked',
     mainImage: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=1200',
     galleryImages: [
       'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=1600'
@@ -133,155 +172,123 @@ export const PRODUCTS: JewelryProduct[] = [
     highResZoomImage: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=2400',
     tryOnType: 'necklace',
     tryOnOverlayImage: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=800',
-    tryOnScaleDefault: 0.55,
-    description: 'A seamless cascade of 72 hand-matched round brilliant diamonds graduating gracefully toward a central 1.5ct focal stone. Articulated in custom platinum three-prong settings.',
+    tryOnScaleDefault: 0.48,
+    description: 'A timeless sacred symbol of marital harmony. Features a hallmarked 22k pure gold pendant with intricate leaf engraving strung on a hand-woven black and gold bead chain.',
     gemstoneSpec: {
-      type: 'Natural Diamond Ensemble',
-      carat: 15.50,
-      cut: 'Triple Excellent Cut',
-      clarity: 'VVS1 - VVS2',
-      color: 'E-F Colorless',
-      origin: 'Ethically Mined, Canada & Botswana'
+      type: '22K Gold with Black Onyx Sacred Beads',
+      weightGrams: 8.4,
+      purity: '22K BIS 916',
+      cut: 'Traditional Temple Floral',
+      origin: 'Phagwara Goldsmith Karigars'
     },
     metalsAvailable: [
-      { type: 'platinum', label: 'Platinum 950', hexColor: '#E5E4E2' },
-      { type: '18k-yellow-gold', label: '18K Yellow Gold', hexColor: '#D4AF37' }
+      { type: '22k-yellow-gold', label: '22K Yellow Gold (916)', hexColor: '#D4AF37' }
     ],
-    sizesAvailable: ['16 inch (Classic Riviera)', '18 inch (Extended Collar)'],
+    sizesAvailable: ['16 inch (Standard)', '18 inch (Classic)', '20 inch (Long)'],
     isBestSeller: true,
-    isSpecialCollection: true,
     inStock: true,
-    engravingSupported: false
+    engravingSupported: true
   },
   {
-    id: 'ring-eternity-baguette',
-    name: 'Celestial Baguette Eternity Band',
-    subtitle: '4.5 Carat Platinum Channel-Set Diamond Band',
-    category: 'rings',
-    collection: 'The Celestial Solitaire Collection',
-    price: 9800,
-    rating: 4.93,
-    reviewCount: 210,
+    id: 'gold-plating-polishing-service',
+    name: '24K Micron Gold Plating & Ultrasonic Polishing Service',
+    subtitle: 'Professional In-House Goldsmith Restoration for Silver Ornaments, Old Gold & Heirlooms',
+    category: 'polishing-services',
+    collection: 'Goldsmith & Gold Plating Services',
+    price: 3500,
+    originalPrice: 4500,
+    rating: 4.99,
+    reviewCount: 165,
+    goldWeight: '24K Pure Gold Dip (High Micron Coating)',
+    purity: '24K Pure Gold Layering',
     mainImage: 'https://images.unsplash.com/photo-1598560917505-59a3ad559071?auto=format&fit=crop&q=80&w=1200',
     galleryImages: [
       'https://images.unsplash.com/photo-1598560917505-59a3ad559071?auto=format&fit=crop&q=80&w=1600'
     ],
     highResZoomImage: 'https://images.unsplash.com/photo-1598560917505-59a3ad559071?auto=format&fit=crop&q=80&w=2400',
-    tryOnType: 'ring',
-    tryOnOverlayImage: 'https://images.unsplash.com/photo-1598560917505-59a3ad559071?auto=format&fit=crop&q=80&w=800',
-    tryOnScaleDefault: 0.32,
-    description: 'Crisp, geometric elegance featuring endless step-cut baguette diamonds hand-selected for uniform clarity and fire. Smooth inner comfort-fit silhouette.',
+    description: 'Expert gold plating and restoration service by Shri Guru Kirpa Gold Platters. We use advanced electro-gold plating baths with 24K pure gold deposit, giving old silver, brass, or dull gold ornaments a showroom-fresh mirror shine with long-lasting durability.',
     gemstoneSpec: {
-      type: 'Baguette Cut Diamonds',
-      carat: 4.50,
-      cut: 'Step Cut Precision',
-      clarity: 'VVS1',
-      color: 'F Colorless',
-      origin: 'GIA Certified Conflict-Free'
+      type: '24K Pure Electro-Gold Coating & Polish',
+      purity: '24K Micro-Layer Dip',
+      origin: 'Shop No. 15, Bansawala Bazar Workshop'
     },
     metalsAvailable: [
-      { type: 'platinum', label: 'Platinum 950', hexColor: '#E5E4E2' },
-      { type: '18k-yellow-gold', label: '18K Yellow Gold', hexColor: '#D4AF37' },
-      { type: 'rose-gold', label: '18K Rose Gold', hexColor: '#E8A798' }
+      { type: '24k-pure-gold', label: '24K High-Shine Pure Gold Dip', hexColor: '#FFD700' },
+      { type: 'antique-gold', label: 'Antique Vintage Finish Polish', hexColor: '#B8860B' },
+      { type: 'rose-gold', label: 'Rose Gold Electro-Coat', hexColor: '#E8A798' }
     ],
-    sizesAvailable: ['US 5.0', 'US 6.0', 'US 7.0', 'US 8.0'],
+    sizesAvailable: ['Single Ring / Pendant (₹1,500)', 'Kada / Bangles Pair (₹3,500)', 'Full Heavy Bridal Set (₹7,500)'],
     isBestSeller: true,
-    inStock: true,
-    engravingSupported: true
-  },
-  {
-    id: 'earrings-diamond-chandelier',
-    name: 'Palais De Versailles Diamond Drop Earrings',
-    subtitle: '6.2 Carat Diamond Cascade Earrings in Platinum',
-    category: 'earrings',
-    collection: 'Lumière Vintage Heritage Collection',
-    price: 19400,
-    rating: 4.89,
-    reviewCount: 38,
-    mainImage: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&q=80&w=1200',
-    galleryImages: [
-      'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&q=80&w=1600'
-    ],
-    highResZoomImage: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&q=80&w=2400',
-    description: 'Capturing the dancing candelabra reflections of French royal palaces, these statement drops feature marquise, pear, and round brilliant diamonds that catch light with every movement.',
-    gemstoneSpec: {
-      type: 'Natural Diamonds',
-      carat: 6.20,
-      cut: 'Mixed Brilliant & Marquise',
-      clarity: 'VVS2',
-      color: 'E Colorless',
-      origin: 'Kimberley Certified'
-    },
-    metalsAvailable: [
-      { type: 'platinum', label: 'Platinum 950', hexColor: '#E5E4E2' },
-      { type: '18k-yellow-gold', label: '18K Yellow Gold', hexColor: '#D4AF37' }
-    ],
-    isNewArrival: true,
+    isSpecialCollection: true,
     inStock: true,
     engravingSupported: false
   },
   {
-    id: 'bracelet-tennis-aura',
-    name: 'Aura Classic 10 Carat Diamond Tennis Bracelet',
-    subtitle: 'Four-Prong Platinum Diamond Line Bracelet',
-    category: 'bracelets',
-    collection: 'The Celestial Solitaire Collection',
-    price: 16500,
-    rating: 4.97,
-    reviewCount: 156,
-    mainImage: 'https://images.unsplash.com/photo-1611591475196-8579d46e31cb?auto=format&fit=crop&q=80&w=1200',
+    id: 'ring-mens-royal-punjabi-gold',
+    name: 'Men’s 22K Solid Gold Lion / Khanda Ring',
+    subtitle: 'Heavy Hand-Cast Gold Ring with Bold Punjabi Crest Carving',
+    category: 'rings',
+    collection: 'Heritage Punjabi Gold Collection',
+    price: 72000,
+    rating: 4.95,
+    reviewCount: 84,
+    goldWeight: '9.80 grams',
+    purity: '22K BIS 916 Hallmarked',
+    mainImage: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&q=80&w=1200',
     galleryImages: [
-      'https://images.unsplash.com/photo-1611591475196-8579d46e31cb?auto=format&fit=crop&q=80&w=1600'
+      'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&q=80&w=1600'
     ],
-    highResZoomImage: 'https://images.unsplash.com/photo-1611591475196-8579d46e31cb?auto=format&fit=crop&q=80&w=2400',
-    description: 'The quintessential staple of fine jewelry. 42 perfectly proportioned round brilliant diamonds set in custom hand-cast platinum links with a double safety clasp mechanism.',
+    highResZoomImage: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&q=80&w=2400',
+    tryOnType: 'ring',
+    tryOnOverlayImage: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&q=80&w=800',
+    tryOnScaleDefault: 0.38,
+    description: 'A commanding men’s gold ring cast in solid 22K yellow gold. Features precision laser detailing with deep hand-engraved borders and high-polish shoulders.',
     gemstoneSpec: {
-      type: 'Round Brilliant Diamonds',
-      carat: 10.00,
-      cut: 'Ideal Cut',
-      clarity: 'VVS2',
-      color: 'F Colorless',
-      origin: 'Conflict-Free Canada'
+      type: '22K Solid Hallmarked Gold',
+      weightGrams: 9.8,
+      purity: '22K (916)',
+      cut: 'Hand-Cast Solid Gold',
+      origin: 'Phagwara Goldsmith Atelier'
     },
     metalsAvailable: [
-      { type: 'platinum', label: 'Platinum 950', hexColor: '#E5E4E2' },
-      { type: '18k-yellow-gold', label: '18K Yellow Gold', hexColor: '#D4AF37' },
-      { type: 'rose-gold', label: '18K Rose Gold', hexColor: '#E8A798' }
+      { type: '22k-yellow-gold', label: '22K Yellow Gold (916)', hexColor: '#D4AF37' },
+      { type: 'antique-gold', label: 'Antique Matte Gold', hexColor: '#B8860B' }
     ],
-    sizesAvailable: ['6.5 inch', '7.0 inch', '7.5 inch'],
-    isBestSeller: true,
+    sizesAvailable: ['Indian Size 16', 'Indian Size 18', 'Indian Size 20', 'Indian Size 22', 'Indian Size 24'],
+    isNewArrival: true,
     inStock: true,
     engravingSupported: true
   },
   {
-    id: 'watch-lumiere-pavarium',
-    name: 'Lumière Pavarium Diamond Timepiece',
-    subtitle: 'Swiss Automatic Watch with Snow-Paved Diamond Dial',
-    category: 'watches',
-    collection: 'High Watchmaking',
-    price: 46800,
-    rating: 4.96,
-    reviewCount: 29,
+    id: 'gold-chain-mens-hallmarked-rope',
+    name: '22K Solid Gold Machine Rope & Box Chain',
+    subtitle: 'Strong Daily-Wear Hallmarked Gold Chain with Secure Lobster Clasp',
+    category: 'necklaces',
+    collection: 'Heritage Punjabi Gold Collection',
+    price: 118000,
+    rating: 4.93,
+    reviewCount: 92,
+    goldWeight: '15.60 grams',
+    purity: '22K BIS 916 Hallmarked',
     mainImage: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80&w=1200',
     galleryImages: [
       'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80&w=1600'
     ],
     highResZoomImage: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80&w=2400',
-    description: 'An exceptional high-watchmaking creation featuring a Swiss Calibre 1200 automatic movement. The 34mm white gold case and dial are fully snow-paved with 480 brilliant-cut diamonds.',
+    description: 'A durable, high-polish 22K gold chain built for regular daily wear. Interlocking solid links prevent breakage, tested with BIS hallmark laser stamping at the lock.',
     gemstoneSpec: {
-      type: 'Snow-Paved Diamond Setting',
-      carat: 5.40,
-      cut: 'Brilliant Cut Micro-Set',
-      clarity: 'IF - VVS1',
-      color: 'D-E Colorless',
-      origin: 'Swiss Craftsmanship'
+      type: '22K Solid Gold Machine Interlink',
+      weightGrams: 15.6,
+      purity: '22K (916 Pure)',
+      origin: 'Sarafan Bazar, Phagwara'
     },
     metalsAvailable: [
-      { type: 'white-gold', label: '18K White Gold', hexColor: '#F0F0F0' },
-      { type: '18k-yellow-gold', label: '18K Yellow Gold', hexColor: '#D4AF37' }
+      { type: '22k-yellow-gold', label: '22K Yellow Gold (916)', hexColor: '#D4AF37' }
     ],
-    isSpecialCollection: true,
+    sizesAvailable: ['20 inch (Medium)', '22 inch (Standard Mens)', '24 inch (Long)'],
+    isBestSeller: true,
     inStock: true,
     engravingSupported: true
   }
 ];
+

@@ -112,7 +112,7 @@ export const ZoomLoupeModal: React.FC<ZoomLoupeModalProps> = ({
                   activeTab === 'certificate' ? 'bg-amber-400 text-stone-950 font-semibold' : 'text-stone-300 hover:text-white'
                 }`}
               >
-                📜 GIA Certificate
+                📜 BIS Hallmark & Purity
               </button>
             </div>
           </div>
@@ -156,7 +156,7 @@ export const ZoomLoupeModal: React.FC<ZoomLoupeModalProps> = ({
 
               {/* Bottom Loupe Controls */}
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-3 bg-black/80 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 text-xs text-stone-300">
-                <span>Hover over image to inspect diamond facets</span>
+                <span>Hover over image to inspect gold polish & filigree craftsmanship</span>
                 <span className="text-stone-500">|</span>
                 <span>Zoom Level:</span>
                 {[2, 3, 5, 8].map(zf => (
@@ -200,47 +200,47 @@ export const ZoomLoupeModal: React.FC<ZoomLoupeModalProps> = ({
             </div>
           )}
 
-          {/* TAB 3: GIA GEMOLOGICAL CERTIFICATE */}
+          {/* TAB 3: BIS HALLMARK & PURITY CERTIFICATE */}
           {activeTab === 'certificate' && (
             <div className="w-full max-w-lg bg-[#FAF8F5] text-stone-900 rounded-2xl p-6 border-2 border-amber-600/40 shadow-2xl relative">
               <div className="flex justify-between items-start border-b border-amber-800/20 pb-4 mb-4">
                 <div>
                   <div className="flex items-center gap-2">
                     <Award className="w-6 h-6 text-amber-700" />
-                    <h3 className="font-serif text-xl font-bold text-amber-950">GIA Dossier & Provenance</h3>
+                    <h3 className="font-serif text-xl font-bold text-amber-950">BIS Hallmark & Purity Guarantee</h3>
                   </div>
-                  <p className="text-xs text-stone-500 font-serif italic mt-0.5">Gemological Institute of America Official Inspection</p>
+                  <p className="text-xs text-stone-500 font-serif italic mt-0.5">Bureau of Indian Standards & Shri Guru Kirpa Authenticity Certificate</p>
                 </div>
                 <span className="px-3 py-1 bg-amber-100 text-amber-900 rounded-full font-mono text-xs font-bold border border-amber-300">
-                  REPORT # 622941088
+                  HUID # SGK-916-2026
                 </span>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 text-xs mb-6">
+              <div className="grid grid-cols-2 gap-4 text-xs mb-6 font-sans">
                 <div className="p-3 bg-white rounded-xl border border-stone-200">
-                  <span className="text-stone-500 uppercase font-serif text-[10px] block">Carat Weight</span>
-                  <span className="font-bold text-base text-stone-900">{product.gemstoneSpec.carat} Carats</span>
+                  <span className="text-stone-500 uppercase font-serif text-[10px] block">Gold Purity</span>
+                  <span className="font-bold text-base text-stone-900">{product.purity || '22K (916 Hallmarked)'}</span>
                 </div>
                 <div className="p-3 bg-white rounded-xl border border-stone-200">
-                  <span className="text-stone-500 uppercase font-serif text-[10px] block">Color Grade</span>
-                  <span className="font-bold text-base text-stone-900">{product.gemstoneSpec.color}</span>
+                  <span className="text-stone-500 uppercase font-serif text-[10px] block">Net Gold Weight</span>
+                  <span className="font-bold text-base text-stone-900">{product.weight || '38.5 grams'}</span>
                 </div>
                 <div className="p-3 bg-white rounded-xl border border-stone-200">
-                  <span className="text-stone-500 uppercase font-serif text-[10px] block">Clarity Grade</span>
-                  <span className="font-bold text-base text-stone-900">{product.gemstoneSpec.clarity}</span>
+                  <span className="text-stone-500 uppercase font-serif text-[10px] block">Goldsmith Workshop</span>
+                  <span className="font-bold text-base text-stone-900">Phagwara, Punjab</span>
                 </div>
                 <div className="p-3 bg-white rounded-xl border border-stone-200">
-                  <span className="text-stone-500 uppercase font-serif text-[10px] block">Cut Precision</span>
-                  <span className="font-bold text-base text-stone-900">{product.gemstoneSpec.cut}</span>
+                  <span className="text-stone-500 uppercase font-serif text-[10px] block">Gemstone / Setting</span>
+                  <span className="font-bold text-base text-stone-900">{product.gemstoneSpec.type}</span>
                 </div>
               </div>
 
               <div className="p-3.5 bg-amber-50/80 rounded-xl border border-amber-200/80 text-xs text-amber-950 space-y-1">
                 <div className="flex items-center gap-1.5 font-semibold text-amber-900">
-                  <ShieldCheck className="w-4 h-4 text-amber-700" /> Ethical Kimberley Process Certified
+                  <ShieldCheck className="w-4 h-4 text-amber-700" /> 100% Genuine Certified & Tested
                 </div>
-                <p className="text-[11px] text-stone-600 leading-relaxed">
-                  Origin: {product.gemstoneSpec.origin}. Inscribed with micro laser barcode on girdle matching digital blockchain passport.
+                <p className="text-[11px] text-stone-600 leading-relaxed font-sans">
+                  Crafted by master goldsmiths in Phagwara with lifetime buy-back and exchange guarantee at current market gold value.
                 </p>
               </div>
             </div>
@@ -252,32 +252,32 @@ export const ZoomLoupeModal: React.FC<ZoomLoupeModalProps> = ({
         <div className="lg:w-1/3 p-6 flex flex-col justify-between overflow-y-auto bg-[#fdfbf7]">
           <div>
             <div className="mb-4">
-              <span className="text-[10px] font-serif uppercase tracking-widest text-amber-800 font-bold">
-                {product.collection}
+              <span className="text-[10px] font-serif uppercase tracking-widest text-[#9D825E] font-bold">
+                {product.collection} • {product.purity}
               </span>
-              <h2 className="font-serif text-2xl text-stone-900 font-medium leading-snug mt-1">
+              <h2 className="font-serif text-2xl text-stone-900 font-bold leading-snug mt-1">
                 {product.name}
               </h2>
               <div className="flex items-center gap-2 mt-2">
-                <span className="text-xl font-serif text-amber-900 font-bold">
-                  ${product.price.toLocaleString()} USD
+                <span className="text-xl font-serif text-[#2D2926] font-bold">
+                  ₹{product.price.toLocaleString('en-IN')}
                 </span>
                 {product.originalPrice && (
                   <span className="text-sm text-stone-400 line-through">
-                    ${product.originalPrice.toLocaleString()}
+                    ₹{product.originalPrice.toLocaleString('en-IN')}
                   </span>
                 )}
               </div>
             </div>
 
-            <p className="text-xs text-stone-600 leading-relaxed mb-5">
+            <p className="text-xs text-stone-600 leading-relaxed mb-5 font-sans">
               {product.description}
             </p>
 
             {/* Metal Finish Selector */}
             <div className="mb-5">
               <label className="block text-xs font-serif uppercase tracking-widest text-stone-700 mb-2 font-semibold">
-                Select Precious Metal Setting
+                Select Gold Polish / Finish
               </label>
               <div className="grid grid-cols-2 gap-2">
                 {product.metalsAvailable.map(metal => (
@@ -305,14 +305,14 @@ export const ZoomLoupeModal: React.FC<ZoomLoupeModalProps> = ({
               <div className="mb-6 p-4 bg-amber-50/60 rounded-xl border border-amber-200/80">
                 <div className="flex items-center justify-between mb-2">
                   <label className="text-xs font-serif uppercase tracking-widest text-amber-900 font-bold flex items-center gap-1.5">
-                    <Feather className="w-3.5 h-3.5 text-amber-700" /> Complimentary Inner Band Engraving
+                    <Feather className="w-3.5 h-3.5 text-amber-700" /> Complimentary Gurmukhi / English Engraving
                   </label>
                   <span className="text-[10px] text-stone-500 font-mono">Max 25 chars</span>
                 </div>
                 <input
                   type="text"
                   maxLength={25}
-                  placeholder="e.g. Forever & Always ~ A&C 2026"
+                  placeholder="e.g. ਨਿਰਭਉ ਨਿਰਵੈਰ or Gurkirpa 2026"
                   value={engravingText}
                   onChange={(e) => setEngravingText(e.target.value)}
                   className="w-full bg-white border border-[#e6dfd5] rounded-lg px-3 py-2 text-stone-800 text-xs focus:outline-none focus:ring-2 focus:ring-amber-500/40"
@@ -321,7 +321,7 @@ export const ZoomLoupeModal: React.FC<ZoomLoupeModalProps> = ({
                 {engravingText && (
                   <div className="mt-3 p-2.5 bg-stone-900 text-amber-300 rounded-lg text-center font-serif italic text-xs tracking-widest border border-amber-500/30">
                     &ldquo;{engravingText}&rdquo;
-                    <span className="block text-[9px] text-stone-400 non-italic uppercase font-sans mt-0.5">Laser-etched inside metal band</span>
+                    <span className="block text-[9px] text-stone-400 non-italic uppercase font-sans mt-0.5">Hand-carved / laser engraved on jewelry</span>
                   </div>
                 )}
               </div>
@@ -336,9 +336,9 @@ export const ZoomLoupeModal: React.FC<ZoomLoupeModalProps> = ({
                   onClose();
                   onOpenTryOn(product);
                 }}
-                className="w-full py-3 bg-stone-900 text-amber-300 rounded-xl font-serif text-sm font-medium hover:bg-stone-800 transition-all flex items-center justify-center gap-2 shadow"
+                className="w-full py-3 bg-[#2D2926] text-[#D4AF37] rounded-xl font-serif text-sm font-bold hover:bg-stone-800 transition-all flex items-center justify-center gap-2 shadow"
               >
-                <Eye className="w-4 h-4 text-amber-400" /> Launch Virtual Try-On Studio
+                <Eye className="w-4 h-4 text-[#D4AF37]" /> Launch Virtual Try-On Studio
               </button>
             )}
 
@@ -347,9 +347,9 @@ export const ZoomLoupeModal: React.FC<ZoomLoupeModalProps> = ({
                 onAddToCart(product, selectedMetal, product.sizesAvailable?.[0] || 'Standard', engravingText);
                 onClose();
               }}
-              className="w-full py-3.5 bg-amber-500 hover:bg-amber-400 text-stone-950 rounded-xl font-serif text-sm font-semibold transition-all flex items-center justify-center gap-2 shadow-md"
+              className="w-full py-3.5 bg-[#9D825E] hover:bg-[#886F4E] text-white rounded-xl font-serif text-sm font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
             >
-              <ShoppingBag className="w-4 h-4" /> Add to Shopping Bag (${product.price.toLocaleString()})
+              <ShoppingBag className="w-4 h-4" /> Add to Inquiry Bag (₹{product.price.toLocaleString('en-IN')})
             </button>
           </div>
 

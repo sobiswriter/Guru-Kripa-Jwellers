@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  
+  .font-serif {
+    font-family: 'Cinzel', Georgia, serif;
+  }
+}

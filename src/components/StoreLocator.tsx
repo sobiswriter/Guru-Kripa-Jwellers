@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { MapPin, Phone, Clock, Mail, Globe, Sparkles, Navigation, Calendar, ChevronRight, Check } from 'lucide-react';
+import React, { useState } from 'react';
+import { MapPin, Phone, Clock, MessageCircle, Navigation, Calendar, ChevronRight, Sparkles, Star } from 'lucide-react';
 import { StoreLocation, JewelryProduct } from '../types';
 import { STORES } from '../data/stores';
 
@@ -8,171 +8,133 @@ interface StoreLocatorProps {
 }
 
 export const StoreLocator: React.FC<StoreLocatorProps> = ({ onBookAppointment }) => {
-  const [selectedRegion, setSelectedRegion] = useState<string>('All');
-  const [searchQuery, setSearchQuery] = useState<string>('');
   const [activeStore, setActiveStore] = useState<StoreLocation>(STORES[0]);
 
-  // Filter stores
-  const filteredStores = STORES.filter(store => {
-    const matchesRegion = selectedRegion === 'All' || store.region === selectedRegion;
-    const matchesSearch =
-      store.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      store.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      store.country.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesRegion && matchesSearch;
-  });
-
-  // Calculate live store local time string
-  const getStoreLocalTime = (timeZone: string) => {
-    try {
-      return new Date().toLocaleTimeString('en-US', {
-        timeZone,
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: true
-      });
-    } catch {
-      return '10:00 AM Local';
-    }
-  };
-
   return (
-    <section id="store-locator" className="py-20 bg-[#fdfbf7] text-stone-900 border-t border-[#e6dfd5]">
+    <section id="store-locator" className="py-16 bg-[#FAF8F5] text-[#2D2926] border-t border-[#E8E1D5]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Title */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <span className="text-xs font-serif uppercase tracking-[0.25em] text-amber-800 font-bold block mb-2">
-            Haute Joaillerie Salons
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <span className="text-xs font-serif uppercase tracking-widest text-[#9D825E] font-bold block mb-2">
+            Visit Our Phagwara Store & Karigar Workshop
           </span>
-          <h2 className="text-3xl md:text-4xl font-serif text-stone-900 font-medium">
-            Global Flagship Boutiques
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-[#2D2926] font-medium">
+            Shri Guru Kirpa Gold Platters And Jewellers
           </h2>
-          <p className="text-stone-600 text-sm mt-3 leading-relaxed">
-            Experience our high jewelry creations in person. Enjoy private VIP salon suites, champagne hospitality, and bespoke gemological appraisals.
+          <p className="text-[#665E55] text-sm mt-2.5 leading-relaxed font-sans">
+            Located in the heart of Sarafan Bazar, Phagwara. Walk in for custom gold jewellery orders, direct goldsmith consultation, hallmark verification, or 24K gold plating and ultrasonic polish.
           </p>
         </div>
 
-        {/* Region Filters & Search */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-10 pb-6 border-b border-[#e6dfd5]">
-          <div className="flex flex-wrap gap-2">
-            {['All', 'Europe', 'Americas', 'Asia-Pacific', 'Middle East'].map(reg => (
-              <button
-                key={reg}
-                onClick={() => setSelectedRegion(reg)}
-                className={`px-4 py-2 rounded-full text-xs font-serif tracking-wider uppercase transition-all ${
-                  selectedRegion === reg
-                    ? 'bg-stone-900 text-amber-300 font-bold shadow-md'
-                    : 'bg-white text-stone-700 hover:bg-stone-100 border border-[#e6dfd5]'
-                }`}
-              >
-                {reg}
-              </button>
-            ))}
-          </div>
-
-          <div className="w-full md:w-72 relative">
-            <input
-              type="text"
-              placeholder="Search by city or country..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-white border border-[#e6dfd5] rounded-full pl-4 pr-10 py-2 text-xs text-stone-800 focus:outline-none focus:ring-2 focus:ring-amber-500/40"
-            />
-            <MapPin className="w-4 h-4 text-stone-400 absolute right-3.5 top-1/2 -translate-y-1/2" />
-          </div>
-        </div>
-
-        {/* Interactive Map & Store Cards Container */}
+        {/* Store Detail & Map Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Left Column: Store List */}
-          <div className="lg:col-span-5 space-y-4 max-h-[600px] overflow-y-auto pr-1">
-            {filteredStores.map(store => (
+          {/* Left Column: Store Locations / Desks */}
+          <div className="lg:col-span-5 space-y-4">
+            {STORES.map(store => (
               <div
                 key={store.id}
                 onClick={() => setActiveStore(store)}
-                className={`p-5 rounded-2xl transition-all cursor-pointer border ${
+                className={`p-5 rounded-2xl transition-all cursor-pointer border text-left ${
                   activeStore.id === store.id
-                    ? 'bg-amber-50/70 border-amber-600/80 shadow-md ring-1 ring-amber-500/30'
-                    : 'bg-white border-[#e6dfd5] hover:border-amber-400'
+                    ? 'bg-[#FAF3E0] border-[#9D825E] shadow-md ring-1 ring-[#9D825E]/40'
+                    : 'bg-white border-[#E8E1D5] hover:border-[#9D825E]'
                 }`}
               >
                 <div className="flex justify-between items-start">
                   <div>
                     <div className="flex items-center gap-2">
                       {store.isFlagship && (
-                        <span className="px-2 py-0.5 bg-amber-400 text-stone-950 text-[10px] font-bold rounded-full uppercase font-serif tracking-widest">
-                          Flagship
+                        <span className="px-2.5 py-0.5 bg-[#2D2926] text-[#D4AF37] text-[10px] font-bold rounded-full font-serif">
+                          Main Store & Workshop
                         </span>
                       )}
-                      <span className="text-xs text-stone-500 font-serif font-semibold">{store.country}</span>
+                      <span className="text-xs text-[#9D825E] font-serif font-semibold">{store.city}, Punjab</span>
                     </div>
-                    <h3 className="font-serif text-lg font-medium text-stone-900 mt-1">
+                    <h3 className="font-serif text-lg font-bold text-[#2D2926] mt-1">
                       {store.name}
                     </h3>
                   </div>
-                  <span className="text-xs font-mono font-medium text-amber-800 bg-amber-100/60 px-2.5 py-1 rounded-full flex items-center gap-1">
-                    <Clock className="w-3 h-3" /> {getStoreLocalTime(store.timezone)}
+                  <span className="text-xs font-serif text-[#5C4524] bg-[#F4EFE6] px-2.5 py-1 rounded-full flex items-center gap-1 font-semibold">
+                    <Star className="w-3 h-3 fill-[#D4AF37] text-[#D4AF37]" /> 4.9★
                   </span>
                 </div>
 
-                <p className="text-xs text-stone-600 mt-2 flex items-start gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-amber-700 shrink-0 mt-0.5" />
+                <p className="text-xs text-[#665E55] mt-2 flex items-start gap-1.5 font-sans">
+                  <MapPin className="w-4 h-4 text-[#9D825E] shrink-0 mt-0.5" />
                   {store.address}
                 </p>
 
-                <div className="mt-4 pt-3 border-t border-[#e6dfd5]/80 flex items-center justify-between">
-                  <span className="text-xs text-stone-500 font-serif italic">
-                    {store.phone}
-                  </span>
+                <div className="mt-4 pt-3 border-t border-[#E8E1D5] flex items-center justify-between">
+                  <a
+                    href="tel:+917508500417"
+                    className="text-xs text-[#9D825E] font-medium hover:underline flex items-center gap-1"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <Phone className="w-3 h-3" /> +91 75085 00417
+                  </a>
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       onBookAppointment(store);
                     }}
-                    className="px-3.5 py-1.5 bg-stone-900 hover:bg-stone-800 text-amber-300 rounded-full text-xs font-serif font-medium transition-all flex items-center gap-1"
+                    className="px-3.5 py-1.5 bg-[#2D2926] hover:bg-[#1A1817] text-[#D4AF37] rounded-full text-xs font-serif font-medium transition-all flex items-center gap-1 shadow-sm"
                   >
                     <Calendar className="w-3 h-3" /> Book Visit <ChevronRight className="w-3 h-3" />
                   </button>
                 </div>
               </div>
             ))}
+
+            {/* Direct WhatsApp Box */}
+            <div className="p-4 bg-emerald-50 rounded-2xl border border-emerald-200 text-left flex items-center justify-between">
+              <div>
+                <h4 className="text-xs font-bold text-emerald-950 font-serif">Quick WhatsApp Inquiry</h4>
+                <p className="text-[11px] text-emerald-800 font-sans">Send jewellery photos for custom order estimate</p>
+              </div>
+              <a
+                href="https://wa.me/917508500417?text=Hello%20Shri%20Guru%20Kirpa%20Jewellers,%20I%20am%20inquiring%20about%20a%20custom%20jewellery%20order."
+                target="_blank"
+                rel="noreferrer"
+                className="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-600 text-white rounded-xl text-xs font-serif font-bold transition-all shadow-sm flex items-center gap-1"
+              >
+                <MessageCircle className="w-3.5 h-3.5" /> Chat
+              </a>
+            </div>
           </div>
 
           {/* Right Column: Active Store Map & Details */}
-          <div className="lg:col-span-7 bg-white rounded-2xl border border-[#e6dfd5] overflow-hidden shadow-lg p-6">
+          <div className="lg:col-span-7 bg-white rounded-2xl border border-[#E8E1D5] overflow-hidden shadow-md p-6 text-left">
             
-            {/* Visual Interactive Custom World Map Graphic */}
-            <div className="relative w-full h-[320px] bg-stone-900 rounded-xl overflow-hidden mb-6 flex items-center justify-center border border-stone-800">
-              {/* Map background image */}
+            {/* Visual Map Graphic */}
+            <div className="relative w-full h-[280px] bg-stone-900 rounded-xl overflow-hidden mb-6 flex items-center justify-center border border-stone-800">
               <img
                 src={activeStore.image}
                 alt={activeStore.name}
-                className="w-full h-full object-cover opacity-40 hover:opacity-50 transition-opacity"
+                className="w-full h-full object-cover opacity-50"
               />
 
-              {/* Map Pin Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/40 to-transparent p-6 flex flex-col justify-between">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1A1817] via-[#1A1817]/40 to-transparent p-6 flex flex-col justify-between">
                 <div className="flex justify-between items-start">
-                  <span className="px-3 py-1 bg-black/60 backdrop-blur-md text-amber-300 text-xs font-serif rounded-full border border-amber-500/30">
-                    🌍 Global Coordinates: {activeStore.coordinates.lat.toFixed(2)}°N, {activeStore.coordinates.lng.toFixed(2)}°E
+                  <span className="px-3 py-1 bg-black/70 backdrop-blur-md text-[#D4AF37] text-xs font-serif rounded-full border border-[#D4AF37]/40">
+                    📍 Sarafan Bazar Road, Phagwara
                   </span>
                   <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(activeStore.address)}`}
+                    href="https://www.google.com/maps/search/?api=1&query=Shri+Guru+Kirpa+Gold+Platters+And+Jewellers+Shop+No+15+Bansawala+Bazar+Phagwara+Punjab"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-3 py-1 bg-white/20 hover:bg-white/30 text-white text-xs rounded-full flex items-center gap-1 backdrop-blur-md transition-all"
+                    className="px-3 py-1 bg-[#D4AF37] hover:bg-[#C5A059] text-stone-950 font-bold text-xs rounded-full flex items-center gap-1 shadow-md transition-all font-sans"
                   >
-                    <Navigation className="w-3 h-3" /> Open in Google Maps
+                    <Navigation className="w-3 h-3" /> Get Directions
                   </a>
                 </div>
 
                 <div className="text-white">
-                  <span className="text-amber-400 font-serif text-xs uppercase tracking-widest block font-bold">
-                    {activeStore.city}, {activeStore.country}
+                  <span className="text-[#D4AF37] font-serif text-xs uppercase tracking-widest block font-bold">
+                    Shop No. 15, Bansawala Bazar, Phagwara
                   </span>
-                  <h3 className="font-serif text-2xl font-bold mt-0.5">
+                  <h3 className="font-serif text-xl sm:text-2xl font-bold mt-0.5 text-white">
                     {activeStore.name}
                   </h3>
                 </div>
@@ -182,45 +144,53 @@ export const StoreLocator: React.FC<StoreLocatorProps> = ({ onBookAppointment })
             {/* Active Store Details & Specialties */}
             <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                <div className="p-3.5 bg-stone-50 rounded-xl border border-stone-200/80">
-                  <span className="font-serif text-stone-500 uppercase tracking-widest text-[10px] block font-bold mb-1">
-                    Boutique Hours
+                <div className="p-3.5 bg-[#FAF8F5] rounded-xl border border-[#E8E1D5]">
+                  <span className="font-serif text-[#665E55] uppercase tracking-wider text-[10px] block font-bold mb-1">
+                    Store Timings
                   </span>
-                  <span className="font-medium text-stone-800">{activeStore.hours}</span>
+                  <span className="font-medium text-[#2D2926] font-sans">{activeStore.hours}</span>
                 </div>
-                <div className="p-3.5 bg-stone-50 rounded-xl border border-stone-200/80">
-                  <span className="font-serif text-stone-500 uppercase tracking-widest text-[10px] block font-bold mb-1">
-                    Direct VIP Concierge Phone
+                <div className="p-3.5 bg-[#FAF8F5] rounded-xl border border-[#E8E1D5]">
+                  <span className="font-serif text-[#665E55] uppercase tracking-wider text-[10px] block font-bold mb-1">
+                    Store Contact Phone
                   </span>
-                  <span className="font-medium text-stone-800">{activeStore.phone}</span>
+                  <a href="tel:+917508500417" className="font-bold text-[#9D825E] font-sans hover:underline">
+                    {activeStore.phone}
+                  </a>
                 </div>
               </div>
 
-              {/* Specialties */}
+              {/* Services & Highlights */}
               <div>
-                <span className="font-serif text-xs uppercase tracking-widest text-amber-900 font-bold block mb-2">
-                  Salon Privileges & Services
+                <span className="font-serif text-xs uppercase tracking-wider text-[#2D2926] font-bold block mb-2">
+                  Specialised In-Store Services
                 </span>
                 <div className="flex flex-wrap gap-2">
                   {activeStore.specialties.map((spec, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1 bg-amber-50 text-amber-950 rounded-full text-xs font-serif border border-amber-200 flex items-center gap-1"
+                      className="px-3 py-1 bg-[#FAF3E0] text-[#5C4524] rounded-full text-xs font-serif border border-[#D9C49A] flex items-center gap-1 font-medium"
                     >
-                      <Sparkles className="w-3 h-3 text-amber-600" /> {spec}
+                      <Sparkles className="w-3 h-3 text-[#9D825E]" /> {spec}
                     </span>
                   ))}
                 </div>
               </div>
 
-              {/* CTA */}
-              <div className="pt-3 flex gap-3">
+              {/* CTAs */}
+              <div className="pt-2 flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={() => onBookAppointment(activeStore)}
-                  className="w-full py-3 bg-amber-500 hover:bg-amber-400 text-stone-950 font-serif text-sm font-semibold rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
+                  className="flex-1 py-3 bg-[#9D825E] hover:bg-[#886F4E] text-white font-serif text-xs font-bold rounded-xl transition-all shadow-sm flex items-center justify-center gap-2"
                 >
-                  <Calendar className="w-4 h-4" /> Book VIP Consultation at {activeStore.city} Branch
+                  <Calendar className="w-4 h-4" /> Book Consultation with Goldsmith
                 </button>
+                <a
+                  href="tel:+917508500417"
+                  className="px-5 py-3 bg-[#2D2926] hover:bg-[#1A1817] text-[#D4AF37] font-serif text-xs font-bold rounded-xl transition-all shadow-sm flex items-center justify-center gap-2"
+                >
+                  <Phone className="w-4 h-4" /> Call: +91 75085 00417
+                </a>
               </div>
             </div>
 
@@ -232,3 +202,4 @@ export const StoreLocator: React.FC<StoreLocatorProps> = ({ onBookAppointment })
     </section>
   );
 };
+

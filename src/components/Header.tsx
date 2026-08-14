@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShoppingBag, Eye, Calendar, MapPin, Sparkles, Search, Menu, X, Star } from 'lucide-react';
+import { ShoppingBag, Eye, Calendar, MapPin, Sparkles, Phone, MessageCircle, Menu, X, Star, ShieldCheck } from 'lucide-react';
 import { JewelryCategory } from '../types';
 
 interface HeaderProps {
@@ -28,23 +28,44 @@ export const Header: React.FC<HeaderProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const categories: Array<{ id: JewelryCategory | 'all' | 'collections'; label: string }> = [
-    { id: 'all', label: 'All Joaillerie' },
-    { id: 'rings', label: 'Rings & Solitaires' },
-    { id: 'necklaces', label: 'Necklaces & Pendants' },
-    { id: 'earrings', label: 'Earrings' },
-    { id: 'bracelets', label: 'Bracelets' },
-    { id: 'watches', label: 'High Watchmaking' },
-    { id: 'collections', label: 'Special Collections' }
+    { id: 'all', label: 'All Jewellery' },
+    { id: 'kadas', label: 'Punjabi Kadas' },
+    { id: 'necklaces', label: 'Necklaces & Bridal Sets' },
+    { id: 'rings', label: 'Gold Rings' },
+    { id: 'earrings', label: 'Jhumkas & Tops' },
+    { id: 'polishing-services', label: 'Gold Plating & Polish' },
+    { id: 'collections', label: 'Heritage Collections' }
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-[#fdfbf7]/95 backdrop-blur-md border-b border-[#e6dfd5] transition-all">
+    <header className="sticky top-0 z-40 bg-[#FAF8F5]/95 backdrop-blur-md border-b border-[#E8E1D5] transition-all">
       
-      {/* Top Ticker Announcement */}
-      <div className="bg-stone-900 text-amber-200 text-[11px] py-1.5 px-4 text-center font-serif tracking-widest uppercase flex items-center justify-center gap-4">
-        <span>✨ Experience Live AR Virtual Try-On For Rings & Necklaces</span>
-        <span className="hidden md:inline text-amber-500">•</span>
-        <span className="hidden md:inline">Complimentary Armored Courier Shipping Worldwide</span>
+      {/* Top Ticker Announcement with Local Details */}
+      <div className="bg-[#2D2926] text-[#E8DCC4] text-[11px] py-1.5 px-4 font-serif flex items-center justify-between">
+        <div className="max-w-7xl mx-auto w-full flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <span className="inline-flex items-center gap-1 text-[#D4AF37] font-semibold">
+              <Star className="w-3 h-3 fill-[#D4AF37]" /> 4.9★ (140+ Reviews)
+            </span>
+            <span className="hidden sm:inline text-stone-400">•</span>
+            <span className="hidden sm:inline text-stone-300">
+              Shop No. 15, Bansawala Bazar, Sarafan Bazar Road, Phagwara
+            </span>
+          </div>
+
+          <div className="flex items-center gap-4 text-xs font-sans">
+            <a
+              href="tel:+917508500417"
+              className="text-[#D4AF37] hover:text-amber-300 flex items-center gap-1 font-medium transition-colors"
+            >
+              <Phone className="w-3 h-3" /> +91 75085 00417
+            </a>
+            <span className="hidden md:inline text-stone-500">|</span>
+            <span className="hidden md:inline text-stone-300 text-[11px]">
+              Mon–Sat: 10:00 AM – 8:00 PM
+            </span>
+          </div>
+        </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -65,13 +86,13 @@ export const Header: React.FC<HeaderProps> = ({
                 e.preventDefault();
                 onSelectCategory('all');
               }}
-              className="group flex flex-col"
+              className="group flex flex-col text-left"
             >
-              <span className="font-serif text-2xl tracking-[0.25em] text-stone-900 uppercase font-bold group-hover:text-amber-700 transition-colors">
-                AURA & CARAT
+              <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-[#2D2926] group-hover:text-[#9D825E] transition-colors leading-tight">
+                Shri Guru Kirpa
               </span>
-              <span className="text-[9px] font-serif tracking-[0.4em] text-amber-800 uppercase text-center -mt-1 font-semibold">
-                Haute Joaillerie Paris
+              <span className="text-[10px] sm:text-[11px] font-serif tracking-widest text-[#9D825E] uppercase font-semibold">
+                Gold Platters & Jewellers • Phagwara
               </span>
             </a>
           </div>
@@ -79,43 +100,55 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Right Action Icons & Buttons */}
           <div className="flex items-center gap-2 sm:gap-3">
             
-            {/* AI Concierge Trigger */}
+            {/* WhatsApp Quick Direct Enquiry */}
+            <a
+              href="https://wa.me/917508500417?text=Hello%20Shri%20Guru%20Kirpa%20Jewellers,%20I%20am%20interested%20in%20your%20gold%20jewellery%20and%20polishing%20services."
+              target="_blank"
+              rel="noreferrer"
+              className="hidden sm:flex px-3 py-1.5 bg-emerald-700 hover:bg-emerald-600 text-white rounded-full text-xs font-serif font-semibold transition-all items-center gap-1.5 shadow-sm"
+              title="Chat on WhatsApp"
+            >
+              <MessageCircle className="w-3.5 h-3.5" />
+              <span>WhatsApp</span>
+            </a>
+
+            {/* AI Goldsmith Concierge */}
             <button
               onClick={onOpenConcierge}
-              className="px-3.5 py-1.5 bg-amber-100/70 hover:bg-amber-200/80 text-amber-950 rounded-full text-xs font-serif font-semibold border border-amber-300 transition-all flex items-center gap-1.5 shadow-sm"
-              title="AI Style Concierge"
+              className="px-3 py-1.5 bg-[#FAF3E0] hover:bg-[#F3E8CB] text-[#5C4524] rounded-full text-xs font-serif font-semibold border border-[#D9C49A] transition-all flex items-center gap-1.5 shadow-sm"
+              title="AI Goldsmith Assistant"
             >
-              <Sparkles className="w-3.5 h-3.5 text-amber-700 animate-pulse" />
-              <span className="hidden sm:inline">Aura Concierge</span>
+              <Sparkles className="w-3.5 h-3.5 text-[#9D825E]" />
+              <span className="hidden md:inline">Karigar Assistant</span>
             </button>
 
             {/* Virtual Try-On Launch */}
             <button
               onClick={onOpenTryOn}
-              className="px-3.5 py-1.5 bg-stone-900 hover:bg-stone-800 text-amber-300 rounded-full text-xs font-serif font-semibold transition-all flex items-center gap-1.5 shadow-md"
+              className="px-3.5 py-1.5 bg-[#2D2926] hover:bg-[#1A1817] text-[#D4AF37] rounded-full text-xs font-serif font-semibold transition-all flex items-center gap-1.5 shadow-md"
             >
-              <Eye className="w-3.5 h-3.5 text-amber-400" />
-              <span>Virtual Try-On</span>
+              <Eye className="w-3.5 h-3.5 text-[#D4AF37]" />
+              <span>Live Try-On</span>
             </button>
 
-            {/* Book Appointment Shortcut */}
+            {/* Book In-Store Visit */}
             <button
               onClick={onOpenAppointment}
-              className="hidden md:flex px-3.5 py-1.5 bg-white border border-[#e6dfd5] text-stone-800 hover:border-amber-400 rounded-full text-xs font-serif font-medium transition-all items-center gap-1.5"
+              className="hidden lg:flex px-3.5 py-1.5 bg-white border border-[#E8E1D5] text-[#2D2926] hover:border-[#9D825E] rounded-full text-xs font-serif font-medium transition-all items-center gap-1.5"
             >
-              <Calendar className="w-3.5 h-3.5 text-amber-700" />
-              <span>Book Salon Visit</span>
+              <Calendar className="w-3.5 h-3.5 text-[#9D825E]" />
+              <span>Book Visit</span>
             </button>
 
             {/* Shopping Bag Button */}
             <button
               onClick={onOpenCart}
-              className="relative p-2 text-stone-800 hover:text-amber-800 transition-colors"
-              title="Shopping Bag"
+              className="relative p-2 text-[#2D2926] hover:text-[#9D825E] transition-colors"
+              title="Saved Items / Inquiries"
             >
               <ShoppingBag className="w-6 h-6" />
               {cartCount > 0 && (
-                <span className="absolute top-0 right-0 w-5 h-5 bg-amber-500 text-stone-950 rounded-full text-[10px] font-bold flex items-center justify-center shadow">
+                <span className="absolute top-0 right-0 w-5 h-5 bg-[#D4AF37] text-[#2D2926] rounded-full text-[10px] font-bold flex items-center justify-center shadow">
                   {cartCount}
                 </span>
               )}
@@ -125,15 +158,15 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* Desktop Category Navigation Bar */}
-        <nav className="hidden lg:flex items-center justify-center space-x-8 py-3 border-t border-[#e6dfd5]/60 text-xs font-serif uppercase tracking-widest">
+        <nav className="hidden lg:flex items-center justify-center space-x-7 py-3 border-t border-[#E8E1D5] text-xs font-serif tracking-wider">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => onSelectCategory(cat.id)}
               className={`pb-1 transition-all relative ${
                 activeCategory === cat.id
-                  ? 'text-stone-900 font-bold border-b-2 border-amber-600'
-                  : 'text-stone-600 hover:text-stone-900'
+                  ? 'text-[#2D2926] font-bold border-b-2 border-[#9D825E]'
+                  : 'text-[#665E55] hover:text-[#2D2926]'
               }`}
             >
               {cat.label}
@@ -142,23 +175,23 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={onScrollToStores}
-            className="text-stone-600 hover:text-amber-800 transition-colors flex items-center gap-1"
+            className="text-[#665E55] hover:text-[#9D825E] transition-colors flex items-center gap-1"
           >
-            <MapPin className="w-3 h-3 text-amber-700" /> Boutique Locator
+            <MapPin className="w-3 h-3 text-[#9D825E]" /> Visit Phagwara Shop
           </button>
 
           <button
             onClick={onScrollToReviews}
-            className="text-stone-600 hover:text-amber-800 transition-colors flex items-center gap-1"
+            className="text-[#665E55] hover:text-[#9D825E] transition-colors flex items-center gap-1"
           >
-            <Star className="w-3 h-3 text-amber-500 fill-amber-400" /> Reviews
+            <Star className="w-3 h-3 text-[#D4AF37] fill-[#D4AF37]" /> Customer Reviews (4.9★)
           </button>
         </nav>
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-[#e6dfd5] space-y-2">
-            <div className="grid grid-cols-2 gap-2 text-xs font-serif uppercase tracking-wider">
+          <div className="lg:hidden py-4 border-t border-[#E8E1D5] space-y-2">
+            <div className="grid grid-cols-2 gap-2 text-xs font-serif">
               {categories.map((cat) => (
                 <button
                   key={cat.id}
@@ -168,8 +201,8 @@ export const Header: React.FC<HeaderProps> = ({
                   }}
                   className={`p-2.5 rounded-lg text-left ${
                     activeCategory === cat.id
-                      ? 'bg-amber-100 text-amber-950 font-bold'
-                      : 'bg-white text-stone-700 border border-[#e6dfd5]'
+                      ? 'bg-[#F4EFE6] text-[#2D2926] font-bold border border-[#9D825E]'
+                      : 'bg-white text-stone-700 border border-[#E8E1D5]'
                   }`}
                 >
                   {cat.label}
@@ -178,23 +211,29 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
 
             <div className="pt-2 flex flex-col gap-2">
+              <a
+                href="tel:+917508500417"
+                className="w-full p-2.5 bg-[#9D825E] text-white rounded-lg text-xs font-serif font-bold flex items-center gap-2 justify-center shadow"
+              >
+                <Phone className="w-4 h-4" /> Call Store: +91 75085 00417
+              </a>
               <button
                 onClick={() => {
                   onScrollToStores();
                   setMobileMenuOpen(false);
                 }}
-                className="w-full p-2.5 bg-white border border-[#e6dfd5] rounded-lg text-xs font-serif text-stone-800 flex items-center gap-2"
+                className="w-full p-2.5 bg-white border border-[#E8E1D5] rounded-lg text-xs font-serif text-stone-800 flex items-center gap-2 justify-center"
               >
-                <MapPin className="w-4 h-4 text-amber-700" /> Global Store Locator
+                <MapPin className="w-4 h-4 text-[#9D825E]" /> Shop No. 15, Bansawala Bazar, Phagwara
               </button>
               <button
                 onClick={() => {
                   onOpenAppointment();
                   setMobileMenuOpen(false);
                 }}
-                className="w-full p-2.5 bg-stone-900 text-amber-300 rounded-lg text-xs font-serif flex items-center gap-2 justify-center"
+                className="w-full p-2.5 bg-[#2D2926] text-[#D4AF37] rounded-lg text-xs font-serif flex items-center gap-2 justify-center"
               >
-                <Calendar className="w-4 h-4" /> Book VIP Salon Consultation
+                <Calendar className="w-4 h-4" /> Book Goldsmith Consultation
               </button>
             </div>
           </div>
@@ -204,3 +243,4 @@ export const Header: React.FC<HeaderProps> = ({
     </header>
   );
 };
+

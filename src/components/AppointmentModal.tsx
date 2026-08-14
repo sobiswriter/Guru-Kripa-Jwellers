@@ -12,33 +12,33 @@ interface AppointmentModalProps {
 
 const CONSULTATION_TYPES = [
   {
-    id: 'engagement-bridal',
-    title: 'Engagement & Wedding Ring Bespoke Session',
-    desc: 'Private diamond selection, custom setting design, and AR hand fitting with champagne.',
-    icon: '💍'
+    id: 'custom-order',
+    title: 'Custom Gold Jewellery & Karigar Consultation',
+    desc: 'Bring your design or photo. Direct consultation with master goldsmith for weight and making charge estimate.',
+    icon: '✨'
   },
   {
-    id: 'haute-joaillerie',
-    title: 'Haute Joaillerie & Emerald Viewing',
-    desc: 'Exclusive access to unreleased masterworks and rare colored diamond vaults.',
-    icon: '👑'
+    id: 'kada-bridal',
+    title: 'Punjabi Kada & Bridal Gold Fitting',
+    desc: 'Try sizes, weight calibration, and traditional handmade engraving for bridal sets and heavy kadas.',
+    icon: '🪙'
   },
   {
-    id: 'custom-appraisal',
-    title: 'GIA Diamond & Gemstone Appraisal',
-    desc: 'Certified appraisal, laser inscription check, and estate jewelry valuation.',
+    id: 'plating-polishing',
+    title: 'Jewellery Polishing & Gold Plating Service',
+    desc: 'Instant high-shine ultrasonic clean or 24K thick gold layer electroplating for your ornaments.',
+    icon: '✨'
+  },
+  {
+    id: 'purity-check',
+    title: 'Gold Purity & Goldsmith Appraisal',
+    desc: 'Accurate carat testing and advice on old gold exchange with transparent valuation.',
     icon: '📜'
-  },
-  {
-    id: 'watchmaking',
-    title: 'High Watchmaking & Master Servicing',
-    desc: 'Inspection, watch complication tuning, and bespoke strap fitting.',
-    icon: '⌚'
   }
 ];
 
 const TIME_SLOTS = [
-  '10:30 AM', '11:30 AM', '01:30 PM', '03:00 PM', '04:30 PM', '06:00 PM'
+  '10:30 AM', '12:00 PM', '02:00 PM', '04:00 PM', '05:30 PM', '07:00 PM'
 ];
 
 export const AppointmentModal: React.FC<AppointmentModalProps> = ({
@@ -58,36 +58,36 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
   const [appointmentDate, setAppointmentDate] = useState<string>(
     new Date(Date.now() + 86400000 * 2).toISOString().split('T')[0]
   );
-  const [selectedTimeSlot, setSelectedTimeSlot] = useState<string>('01:30 PM');
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState<string>('02:00 PM');
 
   // Guest details
   const [guestName, setGuestName] = useState<string>('');
   const [guestEmail, setGuestEmail] = useState<string>('');
   const [guestPhone, setGuestPhone] = useState<string>('');
   const [specialNotes, setSpecialNotes] = useState<string>(
-    initialProduct ? `Interested in trying on the ${initialProduct.name}.` : ''
+    initialProduct ? `Inquiring about ${initialProduct.name} (${initialProduct.purity}).` : ''
   );
 
   const [confirmedBooking, setConfirmedBooking] = useState<AppointmentBooking | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!guestName || !guestEmail || !guestPhone) return;
+    if (!guestName || !guestPhone) return;
 
-    const confCode = `VIP-${selectedStore.city.substring(0, 3).toUpperCase()}-${Math.floor(1000 + Math.random() * 9000)}`;
+    const confCode = `SGK-PHG-${Math.floor(1000 + Math.random() * 9000)}`;
     const newBooking: AppointmentBooking = {
       id: `booking-${Date.now()}`,
       storeId: selectedStore.id,
       storeName: selectedStore.name,
-      consultationType: CONSULTATION_TYPES.find(c => c.id === selectedConsultation)?.title || 'Private VIP Consultation',
+      consultationType: CONSULTATION_TYPES.find(c => c.id === selectedConsultation)?.title || 'Store Consultation',
       date: appointmentDate,
       timeSlot: selectedTimeSlot,
       guestName,
-      guestEmail,
+      guestEmail: guestEmail || 'customer@shrigurukirpa.com',
       guestPhone,
       notes: specialNotes,
       confirmationCode: confCode,
-      conciergeName: 'Monsieur Jean-Luc Vance (Master Gemologist)'
+      conciergeName: 'Shri Guru Kirpa Senior Goldsmith'
     };
 
     setConfirmedBooking(newBooking);
@@ -95,12 +95,12 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-3 md:p-6 overflow-y-auto">
-      <div className="relative w-full max-w-3xl bg-[#fdfbf7] rounded-2xl shadow-2xl overflow-hidden border border-[#e6dfd5]">
+      <div className="relative w-full max-w-2xl bg-[#FAF8F5] rounded-2xl shadow-2xl overflow-hidden border border-[#E8E1D5] text-left">
         
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 p-2 bg-white/80 hover:bg-white text-[#1a1817] rounded-full shadow-md transition-all border border-[#e6dfd5]"
+          className="absolute top-4 right-4 z-20 p-2 bg-white hover:bg-stone-100 text-[#2D2926] rounded-full shadow-md transition-all border border-[#E8E1D5]"
         >
           <X className="w-5 h-5" />
         </button>
@@ -108,123 +108,105 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
         {confirmedBooking ? (
           /* CONFIRMATION PASS VIEW */
           <div className="p-8 md:p-10 text-center">
-            <div className="w-16 h-16 bg-amber-100 text-amber-800 rounded-full flex items-center justify-center mx-auto mb-4 border border-amber-300">
-              <Check className="w-8 h-8" />
+            <div className="w-14 h-14 bg-[#FAF3E0] text-[#9D825E] rounded-full flex items-center justify-center mx-auto mb-4 border border-[#D9C49A]">
+              <Check className="w-7 h-7" />
             </div>
 
-            <span className="text-xs font-serif uppercase tracking-[0.25em] text-amber-800 font-bold block mb-1">
-              Private Salon Appointment Confirmed
+            <span className="text-xs font-serif uppercase tracking-widest text-[#9D825E] font-bold block mb-1">
+              Store Visit Booking Confirmed
             </span>
-            <h2 className="text-2xl md:text-3xl font-serif text-stone-900 font-bold">
-              We Await Your Arrival
+            <h2 className="text-2xl font-serif text-[#2D2926] font-bold">
+              We Look Forward to Welcoming You
             </h2>
-            <p className="text-stone-600 text-xs mt-2 max-w-md mx-auto">
-              A digital VIP pass has been issued and dispatched to <span className="font-semibold">{confirmedBooking.guestEmail}</span>.
+            <p className="text-[#665E55] text-xs mt-1.5 max-w-md mx-auto font-sans">
+              Booking confirmed for <span className="font-semibold text-[#2D2926]">{confirmedBooking.guestName}</span>. Direct SMS/WhatsApp reminder sent to <span className="font-semibold text-[#2D2926]">{confirmedBooking.guestPhone}</span>.
             </p>
 
             {/* Pass Ticket Card */}
-            <div className="my-6 p-6 bg-stone-900 text-amber-100 rounded-2xl border-2 border-amber-500/40 text-left shadow-2xl max-w-lg mx-auto relative overflow-hidden">
-              <div className="flex justify-between items-start border-b border-amber-500/30 pb-4 mb-4">
+            <div className="my-6 p-6 bg-[#2D2926] text-amber-100 rounded-2xl border border-[#9D825E]/60 text-left shadow-xl max-w-md mx-auto relative overflow-hidden">
+              <div className="flex justify-between items-start border-b border-[#9D825E]/30 pb-3 mb-3">
                 <div>
-                  <span className="text-[10px] uppercase font-serif tracking-widest text-amber-400 block font-semibold">
-                    Aura & Carat VIP Pass
+                  <span className="text-[10px] uppercase font-serif tracking-widest text-[#D4AF37] block font-bold">
+                    Shri Guru Kirpa Jewellers • Phagwara
                   </span>
-                  <h4 className="font-serif text-lg font-bold text-white">{confirmedBooking.storeName}</h4>
+                  <h4 className="font-serif text-base font-bold text-white mt-0.5">{confirmedBooking.storeName}</h4>
                 </div>
                 <div className="text-right">
-                  <span className="text-[10px] text-stone-400 uppercase font-mono block">Pass ID</span>
-                  <span className="font-mono font-bold text-amber-300 text-sm">{confirmedBooking.confirmationCode}</span>
+                  <span className="text-[10px] text-stone-400 uppercase font-mono block">Token ID</span>
+                  <span className="font-mono font-bold text-[#D4AF37] text-sm">{confirmedBooking.confirmationCode}</span>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3 text-xs mb-4">
+              <div className="grid grid-cols-2 gap-3 text-xs mb-3 font-sans">
                 <div>
-                  <span className="text-stone-400 text-[10px] uppercase block">Guest Name</span>
+                  <span className="text-stone-400 text-[10px] uppercase block">Customer Name</span>
                   <span className="font-medium text-white">{confirmedBooking.guestName}</span>
                 </div>
                 <div>
-                  <span className="text-stone-400 text-[10px] uppercase block">Consultation Type</span>
-                  <span className="font-medium text-white line-clamp-1">{confirmedBooking.consultationType}</span>
+                  <span className="text-stone-400 text-[10px] uppercase block">Phone</span>
+                  <span className="font-medium text-white">{confirmedBooking.guestPhone}</span>
                 </div>
                 <div>
                   <span className="text-stone-400 text-[10px] uppercase block">Date & Time</span>
-                  <span className="font-medium text-amber-300">{confirmedBooking.date} at {confirmedBooking.timeSlot}</span>
+                  <span className="font-medium text-[#D4AF37]">{confirmedBooking.date} • {confirmedBooking.timeSlot}</span>
                 </div>
                 <div>
-                  <span className="text-stone-400 text-[10px] uppercase block">Assigned Specialist</span>
-                  <span className="font-medium text-white">{confirmedBooking.conciergeName}</span>
+                  <span className="text-stone-400 text-[10px] uppercase block">Service</span>
+                  <span className="font-medium text-white truncate block">{confirmedBooking.consultationType}</span>
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-amber-500/30 flex items-center justify-between text-[11px] text-stone-300">
-                <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-amber-400" /> Complimentary Valet Parking Included</span>
-                <QrCode className="w-8 h-8 text-amber-400 shrink-0" />
+              <div className="pt-2.5 border-t border-[#9D825E]/30 flex items-center justify-between text-[11px] text-stone-300">
+                <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-[#D4AF37]" /> Shop No. 15, Bansawala Bazar, Phagwara</span>
+                <span className="text-xs font-serif text-[#D4AF37] font-bold">Phone: +91 75085 00417</span>
               </div>
             </div>
 
             <div className="flex justify-center gap-3">
               <button
                 onClick={onClose}
-                className="px-6 py-2.5 bg-amber-500 hover:bg-amber-400 text-stone-950 font-serif font-semibold text-sm rounded-full transition-all shadow-md"
+                className="px-6 py-2.5 bg-[#9D825E] hover:bg-[#886F4E] text-white font-serif font-bold text-xs rounded-full transition-all shadow-md"
               >
-                Return to Store
+                Back to Jewellery Catalog
               </button>
             </div>
           </div>
         ) : (
           /* FORM VIEW */
           <form onSubmit={handleSubmit} className="p-6 md:p-8">
-            <div className="mb-6">
-              <span className="text-xs font-serif uppercase tracking-widest text-amber-800 font-bold block mb-1">
-                Haute Joaillerie Concierge
+            <div className="mb-5">
+              <span className="text-xs font-serif uppercase tracking-widest text-[#9D825E] font-bold block mb-1">
+                Goldsmith Consultation & Visit
               </span>
-              <h2 className="text-2xl font-serif text-stone-900 font-medium">
-                Reserve an In-Store Consultation
+              <h2 className="text-2xl font-serif text-[#2D2926] font-medium">
+                Book an In-Store Consultation
               </h2>
+              <p className="text-xs text-[#665E55] mt-1 font-sans">
+                Shop No. 15, Bansawala Bazar, Purani Tehsil, Sarafan Bazar Road, Phagwara, Punjab.
+              </p>
             </div>
 
-            <div className="space-y-5">
-              {/* Branch Selection */}
-              <div>
-                <label className="block text-xs font-serif uppercase tracking-widest text-stone-700 mb-2 font-semibold">
-                  1. Preferred Boutique Branch
-                </label>
-                <select
-                  value={selectedStore.id}
-                  onChange={(e) => {
-                    const st = STORES.find(s => s.id === e.target.value);
-                    if (st) setSelectedStore(st);
-                  }}
-                  className="w-full bg-white border border-[#e6dfd5] rounded-xl px-3.5 py-2.5 text-stone-800 text-xs focus:outline-none focus:ring-2 focus:ring-amber-500/40 shadow-sm"
-                >
-                  {STORES.map(st => (
-                    <option key={st.id} value={st.id}>
-                      {st.name} ({st.city}, {st.country})
-                    </option>
-                  ))}
-                </select>
-              </div>
-
+            <div className="space-y-4">
               {/* Consultation Type Grid */}
               <div>
-                <label className="block text-xs font-serif uppercase tracking-widest text-stone-700 mb-2 font-semibold">
-                  2. Select Experience Type
+                <label className="block text-xs font-serif uppercase tracking-wider text-[#2D2926] mb-2 font-bold">
+                  1. Select Service / In-Store Requirement
                 </label>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {CONSULTATION_TYPES.map(ct => (
                     <div
                       key={ct.id}
                       onClick={() => setSelectedConsultation(ct.id)}
                       className={`p-3 rounded-xl border cursor-pointer transition-all ${
                         selectedConsultation === ct.id
-                          ? 'bg-amber-50 border-amber-600 shadow-sm ring-1 ring-amber-500/20'
-                          : 'bg-white border-[#e6dfd5] hover:border-amber-300'
+                          ? 'bg-[#FAF3E0] border-[#9D825E] shadow-sm ring-1 ring-[#9D825E]/40'
+                          : 'bg-white border-[#E8E1D5] hover:border-[#9D825E]'
                       }`}
                     >
-                      <div className="flex items-center gap-2 font-serif font-semibold text-xs text-stone-900">
+                      <div className="flex items-center gap-2 font-serif font-bold text-xs text-[#2D2926]">
                         <span>{ct.icon}</span> {ct.title}
                       </div>
-                      <p className="text-[11px] text-stone-500 mt-1 leading-snug">{ct.desc}</p>
+                      <p className="text-[11px] text-[#665E55] mt-1 leading-snug font-sans">{ct.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -233,20 +215,20 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
               {/* Date & Time Slot */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-serif uppercase tracking-widest text-stone-700 mb-1.5 font-semibold">
-                    3. Preferred Date
+                  <label className="block text-xs font-serif uppercase tracking-wider text-[#2D2926] mb-1.5 font-bold">
+                    2. Preferred Visit Date
                   </label>
                   <input
                     type="date"
                     required
                     value={appointmentDate}
                     onChange={(e) => setAppointmentDate(e.target.value)}
-                    className="w-full bg-white border border-[#e6dfd5] rounded-xl px-3 py-2 text-stone-800 text-xs focus:outline-none focus:ring-2 focus:ring-amber-500/40"
+                    className="w-full bg-white border border-[#E8E1D5] rounded-xl px-3 py-2 text-stone-800 text-xs focus:outline-none focus:ring-2 focus:ring-[#9D825E]/40"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-serif uppercase tracking-widest text-stone-700 mb-1.5 font-semibold">
+                  <label className="block text-xs font-serif uppercase tracking-wider text-[#2D2926] mb-1.5 font-bold">
                     Preferred Time Slot
                   </label>
                   <div className="flex flex-wrap gap-1.5">
@@ -257,8 +239,8 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                         onClick={() => setSelectedTimeSlot(ts)}
                         className={`px-3 py-1.5 rounded-lg text-xs transition-all border ${
                           selectedTimeSlot === ts
-                            ? 'bg-stone-900 text-amber-300 border-stone-900 font-semibold'
-                            : 'bg-white text-stone-700 border-[#e6dfd5] hover:border-stone-400'
+                            ? 'bg-[#2D2926] text-[#D4AF37] border-[#2D2926] font-semibold'
+                            : 'bg-white text-stone-700 border-[#E8E1D5] hover:border-stone-400'
                         }`}
                       >
                         {ts}
@@ -270,49 +252,41 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
 
               {/* Guest Details */}
               <div className="space-y-3 pt-2">
-                <label className="block text-xs font-serif uppercase tracking-widest text-stone-700 font-semibold">
-                  4. Your Contact Details
+                <label className="block text-xs font-serif uppercase tracking-wider text-[#2D2926] font-bold">
+                  3. Contact Information
                 </label>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <input
                     type="text"
                     required
-                    placeholder="Full Name *"
+                    placeholder="Your Full Name *"
                     value={guestName}
                     onChange={(e) => setGuestName(e.target.value)}
-                    className="bg-white border border-[#e6dfd5] rounded-xl px-3 py-2 text-xs text-stone-800 focus:outline-none focus:ring-2 focus:ring-amber-500/40"
-                  />
-                  <input
-                    type="email"
-                    required
-                    placeholder="Email Address *"
-                    value={guestEmail}
-                    onChange={(e) => setGuestEmail(e.target.value)}
-                    className="bg-white border border-[#e6dfd5] rounded-xl px-3 py-2 text-xs text-stone-800 focus:outline-none focus:ring-2 focus:ring-amber-500/40"
+                    className="bg-white border border-[#E8E1D5] rounded-xl px-3 py-2 text-xs text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#9D825E]/40"
                   />
                   <input
                     type="tel"
                     required
-                    placeholder="Mobile Phone *"
+                    placeholder="Mobile / WhatsApp Phone (+91) *"
                     value={guestPhone}
                     onChange={(e) => setGuestPhone(e.target.value)}
-                    className="bg-white border border-[#e6dfd5] rounded-xl px-3 py-2 text-xs text-stone-800 focus:outline-none focus:ring-2 focus:ring-amber-500/40"
+                    className="bg-white border border-[#E8E1D5] rounded-xl px-3 py-2 text-xs text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#9D825E]/40"
                   />
                 </div>
 
                 <textarea
                   rows={2}
-                  placeholder="Special requests or specific diamond preferences..."
+                  placeholder="Tell us about the design, gold weight in grams, or requirements (e.g. bride kada, chain, polish)..."
                   value={specialNotes}
                   onChange={(e) => setSpecialNotes(e.target.value)}
-                  className="w-full bg-white border border-[#e6dfd5] rounded-xl px-3 py-2 text-xs text-stone-800 focus:outline-none focus:ring-2 focus:ring-amber-500/40"
+                  className="w-full bg-white border border-[#E8E1D5] rounded-xl px-3 py-2 text-xs text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#9D825E]/40"
                 />
               </div>
             </div>
 
             {/* Submit CTA */}
-            <div className="mt-6 pt-4 border-t border-[#e6dfd5] flex justify-end gap-3">
+            <div className="mt-6 pt-4 border-t border-[#E8E1D5] flex justify-end gap-3">
               <button
                 type="button"
                 onClick={onClose}
@@ -322,9 +296,9 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
               </button>
               <button
                 type="submit"
-                className="px-6 py-2.5 bg-amber-500 hover:bg-amber-400 text-stone-950 font-serif font-semibold text-xs rounded-xl transition-all shadow-md flex items-center gap-2"
+                className="px-6 py-2.5 bg-[#9D825E] hover:bg-[#886F4E] text-white font-serif font-bold text-xs rounded-xl transition-all shadow-sm flex items-center gap-2"
               >
-                <Sparkles className="w-4 h-4" /> Confirm In-Store Appointment
+                <Sparkles className="w-4 h-4" /> Confirm Visit Booking
               </button>
             </div>
           </form>
@@ -334,3 +308,4 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
     </div>
   );
 };
+

@@ -193,11 +193,11 @@ export const VirtualTryOnModal: React.FC<VirtualTryOnModalProps> = ({
         ctx.restore();
 
         // Add brand watermark
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
-        ctx.fillRect(20, canvas.height - 60, 260, 40);
-        ctx.font = 'bold 16px Georgia, serif';
-        ctx.fillStyle = '#1a1817';
-        ctx.fillText('Aura & Carat AR Fitting', 35, canvas.height - 35);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.fillRect(20, canvas.height - 60, 320, 42);
+        ctx.font = 'bold 15px Georgia, serif';
+        ctx.fillStyle = '#2D2926';
+        ctx.fillText('Shri Guru Kirpa Jewellers • Phagwara', 30, canvas.height - 34);
 
         const dataUrl = canvas.toDataURL('image/png');
         setCapturedPhoto(dataUrl);
@@ -216,7 +216,7 @@ export const VirtualTryOnModal: React.FC<VirtualTryOnModalProps> = ({
   const downloadPhoto = () => {
     if (!capturedPhoto) return;
     const link = document.createElement('a');
-    link.download = `AuraCarat_TryOn_${selectedProduct.name.replace(/\s+/g, '_')}.png`;
+    link.download = `GuruKirpa_TryOn_${selectedProduct.name.replace(/\s+/g, '_')}.png`;
     link.href = capturedPhoto;
     link.click();
   };
@@ -417,7 +417,7 @@ export const VirtualTryOnModal: React.FC<VirtualTryOnModalProps> = ({
               >
                 {tryOnProducts.map(prod => (
                   <option key={prod.id} value={prod.id}>
-                    {prod.name} — ${prod.price.toLocaleString()}
+                    {prod.name} — ₹{prod.price.toLocaleString('en-IN')}
                   </option>
                 ))}
               </select>
@@ -431,11 +431,11 @@ export const VirtualTryOnModal: React.FC<VirtualTryOnModalProps> = ({
               <h3 className="font-serif text-lg text-stone-900 font-medium leading-tight mt-0.5">
                 {selectedProduct.name}
               </h3>
-              <p className="text-amber-900 font-semibold text-lg mt-1">
-                ${selectedProduct.price.toLocaleString()} USD
+              <p className="text-amber-900 font-semibold text-lg mt-1 font-serif">
+                ₹{selectedProduct.price.toLocaleString('en-IN')}
               </p>
               <p className="text-xs text-stone-600 mt-1 line-clamp-2">
-                {selectedProduct.gemstoneSpec.carat} Carat {selectedProduct.gemstoneSpec.type} • {selectedProduct.gemstoneSpec.cut}
+                {selectedProduct.weight} • {selectedProduct.purity} • {selectedProduct.gemstoneSpec.type}
               </p>
             </div>
 
@@ -594,9 +594,9 @@ export const VirtualTryOnModal: React.FC<VirtualTryOnModalProps> = ({
               className="w-full py-3 bg-amber-500 hover:bg-amber-400 text-stone-950 rounded-xl font-serif text-sm font-semibold transition-all flex items-center justify-center gap-2 shadow-md"
             >
               {isAdding ? (
-                <span className="flex items-center gap-2"><Check className="w-4 h-4" /> Added to Shopping Bag</span>
+                <span className="flex items-center gap-2"><Check className="w-4 h-4" /> Added to Bag</span>
               ) : (
-                <span className="flex items-center gap-2"><ShoppingBag className="w-4 h-4" /> Add to Bag (${selectedProduct.price.toLocaleString()})</span>
+                <span className="flex items-center gap-2"><ShoppingBag className="w-4 h-4" /> Add to Order (₹{selectedProduct.price.toLocaleString('en-IN')})</span>
               )}
             </button>
 

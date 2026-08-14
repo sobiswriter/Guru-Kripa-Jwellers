@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Phone, Mail, ShieldCheck, Award, Lock, Sparkles } from 'lucide-react';
+import { MapPin, Phone, MessageCircle, ShieldCheck, Award, Clock, Star, Sparkles } from 'lucide-react';
 
 interface FooterProps {
   onScrollToStores: () => void;
@@ -13,95 +13,124 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenConcierge
 }) => {
   return (
-    <footer className="bg-stone-950 text-stone-300 border-t border-amber-900/30 font-serif">
+    <footer className="bg-[#1C1A18] text-[#D1C7BA] border-t border-[#3D3730] font-serif">
       
       {/* Guarantees Bar */}
-      <div className="border-b border-stone-800 py-8">
+      <div className="border-b border-[#2E2A26] py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-xs">
           <div className="space-y-1">
-            <Award className="w-5 h-5 text-amber-400 mx-auto" />
-            <h5 className="font-bold text-white uppercase tracking-wider text-[11px]">100% GIA Certified</h5>
-            <p className="text-stone-400 text-[10px]">Conflict-free ethical diamonds</p>
+            <Award className="w-5 h-5 text-[#D4AF37] mx-auto" />
+            <h5 className="font-bold text-[#FAF8F5] uppercase tracking-wider text-[11px]">BIS 916 Hallmarked</h5>
+            <p className="text-[#A3988C] text-[10px] font-sans">Guaranteed 22K & 24K pure gold</p>
           </div>
           <div className="space-y-1">
-            <ShieldCheck className="w-5 h-5 text-amber-400 mx-auto" />
-            <h5 className="font-bold text-white uppercase tracking-wider text-[11px]">Armored Delivery</h5>
-            <p className="text-stone-400 text-[10px]">Full value insured global courier</p>
+            <Star className="w-5 h-5 text-[#D4AF37] fill-[#D4AF37] mx-auto" />
+            <h5 className="font-bold text-[#FAF8F5] uppercase tracking-wider text-[11px]">4.9★ Customer Rating</h5>
+            <p className="text-[#A3988C] text-[10px] font-sans">Over 140+ verified local reviews</p>
           </div>
           <div className="space-y-1">
-            <Lock className="w-5 h-5 text-amber-400 mx-auto" />
-            <h5 className="font-bold text-white uppercase tracking-wider text-[11px]">Lifetime Warranty</h5>
-            <p className="text-stone-400 text-[10px]">Annual cleaning & ring resizing</p>
+            <ShieldCheck className="w-5 h-5 text-[#D4AF37] mx-auto" />
+            <h5 className="font-bold text-[#FAF8F5] uppercase tracking-wider text-[11px]">In-House Goldsmith</h5>
+            <p className="text-[#A3988C] text-[10px] font-sans">Custom karigari & quick turnaround</p>
           </div>
           <div className="space-y-1">
-            <Sparkles className="w-5 h-5 text-amber-400 mx-auto" />
-            <h5 className="font-bold text-white uppercase tracking-wider text-[11px]">AR Virtual Try-On</h5>
-            <p className="text-stone-400 text-[10px]">Precision hand & neck fitting</p>
+            <Sparkles className="w-5 h-5 text-[#D4AF37] mx-auto" />
+            <h5 className="font-bold text-[#FAF8F5] uppercase tracking-wider text-[11px]">Gold Plating Lab</h5>
+            <p className="text-[#A3988C] text-[10px] font-sans">24K electro-plating & ultrasonic polish</p>
           </div>
         </div>
       </div>
 
       {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid grid-cols-1 md:grid-cols-4 gap-10 text-xs">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 md:grid-cols-4 gap-8 text-xs text-left">
         
         {/* Brand Column */}
         <div className="space-y-3">
-          <h4 className="text-xl font-bold tracking-[0.2em] text-white uppercase">AURA & CARAT</h4>
-          <p className="text-amber-400 text-[10px] tracking-widest uppercase">Haute Joaillerie Paris • Est. 1894</p>
-          <p className="text-stone-400 leading-relaxed font-sans text-[11px]">
-            Master goldsmiths crafting heirloom diamond solitaires, Colombian emeralds, and Royal Ceylon sapphires for over a century.
+          <h4 className="text-lg font-bold tracking-normal text-[#FAF8F5]">
+            Shri Guru Kirpa Gold Platters And Jewellers
+          </h4>
+          <p className="text-[#D4AF37] text-[11px] font-medium">
+            Local Jewellery Store & Master Goldsmith • Phagwara, Punjab
           </p>
+          <p className="text-[#A3988C] leading-relaxed font-sans text-[11px]">
+            Trusted local jeweller known for quality craftsmanship, personalised service, fair transparent gold rates, and quick custom order turnaround.
+          </p>
+          <div className="flex items-center gap-2 pt-1">
+            <span className="px-2.5 py-1 bg-[#332E27] text-[#D4AF37] rounded-md text-[10px] font-bold border border-[#D4AF37]/30">
+              4.9★ on Google Maps (140+ Reviews)
+            </span>
+          </div>
         </div>
 
-        {/* Boutiques Column */}
+        {/* Location & Contact Info */}
+        <div className="space-y-2.5">
+          <h5 className="text-[#FAF8F5] uppercase tracking-widest text-xs font-bold mb-3 text-[#D4AF37]">
+            Store Location
+          </h5>
+          <div className="flex items-start gap-2 text-[#D1C7BA] font-sans text-[11px]">
+            <MapPin className="w-4 h-4 text-[#D4AF37] shrink-0 mt-0.5" />
+            <span>
+              Shop No. 15, Bansawala Bazar, Purani Tehsil, Sarafan Bazar Road, Phagwara, Punjab 144401, India
+            </span>
+          </div>
+          <div className="flex items-center gap-2 text-[#D1C7BA] font-sans text-[11px]">
+            <Phone className="w-4 h-4 text-[#D4AF37] shrink-0" />
+            <a href="tel:+917508500417" className="hover:text-[#D4AF37] transition-colors font-medium">
+              +91 75085 00417
+            </a>
+          </div>
+          <div className="flex items-center gap-2 text-[#D1C7BA] font-sans text-[11px]">
+            <Clock className="w-4 h-4 text-[#D4AF37] shrink-0" />
+            <span>Monday–Saturday: 10:00 AM – 8:00 PM</span>
+          </div>
+          <div className="pt-2">
+            <a
+              href="https://wa.me/917508500417?text=Hello%20Shri%20Guru%20Kirpa%20Jewellers,%20I%20would%20like%20to%20inquire%20about%20jewellery."
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-800 hover:bg-emerald-700 text-white rounded-lg text-[11px] font-sans font-medium transition-colors"
+            >
+              <MessageCircle className="w-3.5 h-3.5" /> Chat on WhatsApp
+            </a>
+          </div>
+        </div>
+
+        {/* Goldsmith Services Column */}
         <div className="space-y-2">
-          <h5 className="text-white uppercase tracking-widest text-xs font-bold mb-3 text-amber-300">Global Flagships</h5>
-          <ul className="space-y-2 text-stone-400 font-sans text-[11px]">
-            <li>12 Place Vendôme, Paris</li>
-            <li>711 Fifth Avenue, New York</li>
-            <li>165 New Bond Street, London</li>
-            <li>6-9-5 Ginza, Chuo-ku, Tokyo</li>
-            <li>Fashion Avenue, The Dubai Mall</li>
+          <h5 className="text-[#FAF8F5] uppercase tracking-widest text-xs font-bold mb-3 text-[#D4AF37]">
+            Goldsmith Services
+          </h5>
+          <ul className="space-y-1.5 text-[#A3988C] font-sans text-[11px]">
+            <li>• Pure 22K & 24K Gold Jewellery</li>
+            <li>• Custom Punjabi Kadas & Hand-Engraving</li>
+            <li>• Bridal Rani Haar & Mangalsutra Sets</li>
+            <li>• 24K Gold Electro-Plating on Silver & Brass</li>
+            <li>• Jewellery Polishing & Ultrasonic Cleaning</li>
+            <li>• Ring Resizing & Laser Soldering Repairs</li>
+            <li>• Transparent Gold Weighing & Valuation</li>
           </ul>
-          <button
-            onClick={onScrollToStores}
-            className="text-amber-400 hover:text-amber-300 font-serif text-[11px] underline mt-2 block"
-          >
-            Explore Interactive Store Map →
-          </button>
         </div>
 
-        {/* Private Salon Services */}
-        <div className="space-y-2">
-          <h5 className="text-white uppercase tracking-widest text-xs font-bold mb-3 text-amber-300">Private Salon Privileges</h5>
-          <ul className="space-y-2 text-stone-400 font-sans text-[11px]">
-            <li>Bespoke Engagement Ring Design</li>
-            <li>GIA Gemstone & Diamond Appraisal</li>
-            <li>3D Virtual Fitting & AR Studio</li>
-            <li>High Watchmaking Complications</li>
-          </ul>
-          <button
-            onClick={onOpenAppointment}
-            className="text-amber-400 hover:text-amber-300 font-serif text-[11px] underline mt-2 block"
-          >
-            Book VIP Salon Consultation →
-          </button>
-        </div>
-
-        {/* Newsletter & Concierge */}
+        {/* In-Store Visit & Consultation */}
         <div className="space-y-3">
-          <h5 className="text-white uppercase tracking-widest text-xs font-bold text-amber-300">Private Gazette</h5>
-          <p className="text-stone-400 text-[11px] font-sans">
-            Subscribe for invitations to unreleased high jewelry viewings and private Place Vendôme salon events.
+          <h5 className="text-[#FAF8F5] uppercase tracking-widest text-xs font-bold text-[#D4AF37]">
+            Visit or Consultation
+          </h5>
+          <p className="text-[#A3988C] text-[11px] font-sans">
+            Planning a wedding or custom gold design? Book a personalized consultation with our master goldsmith or call directly for daily gold rates.
           </p>
-          <div className="flex gap-2">
-            <input
-              type="email"
-              placeholder="Your email address..."
-              className="bg-stone-900 border border-stone-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500 font-sans w-full"
-            />
-            <button className="px-4 py-2 bg-amber-500 text-stone-950 font-bold rounded-lg hover:bg-amber-400 transition-colors">
-              Join
+          <div className="space-y-2">
+            <button
+              onClick={onOpenAppointment}
+              className="w-full py-2 bg-[#9D825E] hover:bg-[#886F4E] text-white font-bold rounded-lg text-xs transition-colors"
+            >
+              Book In-Store Visit
+            </button>
+            <button
+              onClick={onScrollToStores}
+              className="w-full py-2 bg-transparent border border-[#3D3730] hover:border-[#9D825E] text-[#D1C7BA] rounded-lg text-xs transition-colors"
+            >
+              View Phagwara Map & Directions
             </button>
           </div>
         </div>
@@ -109,10 +138,11 @@ export const Footer: React.FC<FooterProps> = ({
       </div>
 
       {/* Bottom Copyright */}
-      <div className="border-t border-stone-900 py-6 text-center text-[10px] text-stone-500 font-sans">
-        © 2026 Maison Aura & Carat Haute Joaillerie. All rights reserved. GIA Registered. Certified Kimberley Process Compliant.
+      <div className="border-t border-[#2E2A26] py-5 text-center text-[10px] text-[#8C8276] font-sans">
+        © 2026 Shri Guru Kirpa Gold Platters And Jewellers. All rights reserved. Shop No. 15, Bansawala Bazar, Phagwara, Punjab.
       </div>
 
     </footer>
   );
 };
+

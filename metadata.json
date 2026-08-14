@@ -1,6 +1,6 @@
 {
-  "name": "Aura & Carat | Haute Joaillerie",
-  "description": "Luxury jewelry store with AR virtual try-on for rings and necklaces, high-res diamond zoom, global store locator, and VIP appointment booking.",
+  "name": "Shri Guru Kirpa Gold Platters And Jewellers",
+  "description": "Trusted local jeweller and goldsmith in Phagwara, Punjab featuring 22K BIS Hallmarked gold jewellery, custom design orders, jewellery polishing, gold plating, and live virtual try-on.",
   "requestFramePermissions": ["camera"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

@@ -1,14 +1,16 @@
-export type JewelryCategory = 'rings' | 'necklaces' | 'earrings' | 'bracelets' | 'watches';
+export type JewelryCategory = 'rings' | 'necklaces' | 'earrings' | 'bracelets' | 'watches' | 'kadas' | 'polishing-services';
 
-export type MetalType = '18k-yellow-gold' | 'platinum' | 'rose-gold' | 'white-gold';
+export type MetalType = '22k-yellow-gold' | '24k-pure-gold' | '18k-gold' | 'antique-gold' | 'rose-gold' | 'white-gold';
 
 export interface GemstoneSpec {
-  type: string; // e.g., "Diamond", "Royal Emerald", "Blue Sapphire"
-  carat: number;
-  cut: string; // e.g., "Ideal Cut", "Oval Brilliant", "Emerald Cut"
-  clarity: string; // e.g., "VVS1", "FL (Flawless)"
-  color: string; // e.g., "D (Colorless)"
-  origin: string; // e.g., "Conflict-Free Botswana Diamond"
+  type: string; // e.g., "BIS 916 Hallmarked Gold", "Kundan & Polki", "South Sea Pearl", "Navratna Stones"
+  carat?: number;
+  weightGrams?: number;
+  purity?: string; // e.g., "22 Karat (91.6% Pure)", "24 Karat (99.9% Pure)"
+  cut?: string;
+  clarity?: string;
+  color?: string;
+  origin?: string; // e.g., "Phagwara In-House Goldsmith Atelier", "Kundan Karigari"
 }
 
 export interface JewelryProduct {
@@ -17,7 +19,7 @@ export interface JewelryProduct {
   subtitle: string;
   category: JewelryCategory;
   collection: string;
-  price: number;
+  price: number; // in INR ₹
   originalPrice?: number;
   rating: number;
   reviewCount: number;
@@ -29,12 +31,15 @@ export interface JewelryProduct {
   tryOnScaleDefault?: number;
   description: string;
   gemstoneSpec: GemstoneSpec;
+  goldWeight?: string; // e.g., "24.50 grams (2.1 tola)"
+  purity?: string; // e.g., "22K BIS Hallmarked"
+  makingCharges?: string; // e.g., "Transparent 8% Karigar Making"
   metalsAvailable: {
     type: MetalType;
     label: string;
     hexColor: string;
   }[];
-  sizesAvailable?: string[]; // e.g., ["US 5", "US 6", "US 7", "US 8"] or ["16 inch", "18 inch", "20 inch"]
+  sizesAvailable?: string[]; // e.g., ["2.4 (Small)", "2.6 (Medium)", "2.8 (Large)"] or ["16 inch", "18 inch", "20 inch (Bridal)"]
   isBestSeller?: boolean;
   isNewArrival?: boolean;
   isSpecialCollection?: boolean;
@@ -47,7 +52,7 @@ export interface StoreLocation {
   name: string;
   city: string;
   country: string;
-  region: 'Americas' | 'Europe' | 'Asia-Pacific' | 'Middle East';
+  region: 'Punjab & North India' | 'NRI Consultations' | 'Worldwide Delivery';
   address: string;
   phone: string;
   email: string;
@@ -60,6 +65,7 @@ export interface StoreLocation {
   image: string;
   isFlagship?: boolean;
   specialties: string[];
+  googleMapsUrl?: string;
 }
 
 export interface Review {
