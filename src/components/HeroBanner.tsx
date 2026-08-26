@@ -59,18 +59,27 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
                 <Phone className="w-4 h-4" /> Call Store: +91 75085 00417
               </a>
 
-              <button
-                onClick={onOpenTryOn}
-                className="px-6 py-3.5 bg-[#D4AF37] hover:bg-[#C5A059] text-[#201D1A] rounded-full font-serif font-bold text-sm transition-all shadow-lg flex items-center gap-2"
+              <a
+                href="https://wa.me/917508500417?text=Hello%20Shri%20Guru%20Kirpa%20Jewellers,%20I%20would%20like%20to%20inquire%20about%20gold%20designs%20and%20making%20charges."
+                target="_blank"
+                rel="noreferrer"
+                className="px-5 py-3.5 bg-emerald-700 hover:bg-emerald-600 text-white rounded-full font-serif font-bold text-sm transition-all shadow-lg flex items-center gap-2"
               >
-                <Eye className="w-4 h-4" /> AR Virtual Try-On
-              </button>
+                <MessageCircle className="w-4 h-4" /> WhatsApp Us
+              </a>
 
               <button
                 onClick={onOpenAppointment}
+                className="px-5 py-3.5 bg-[#D4AF37] hover:bg-[#C5A059] text-[#201D1A] rounded-full font-serif text-sm font-bold transition-all flex items-center gap-2 shadow-lg"
+              >
+                <Calendar className="w-4 h-4 text-[#201D1A]" /> Book In-Store Visit
+              </button>
+
+              <button
+                onClick={onOpenTryOn}
                 className="px-5 py-3.5 bg-white/10 hover:bg-white/20 text-[#FAF8F5] border border-white/25 rounded-full font-serif text-sm font-medium transition-all flex items-center gap-2"
               >
-                <Calendar className="w-4 h-4 text-[#D4AF37]" /> Book In-Store Visit
+                <Eye className="w-4 h-4 text-[#D4AF37]" /> AR Virtual Try-On
               </button>
             </div>
 
@@ -103,6 +112,10 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
                 <img
                   src={heroProduct.mainImage}
                   alt={heroProduct.name}
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&q=80&w=1200';
+                  }}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
 
@@ -138,10 +151,10 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
                 </div>
 
                 <button
-                  onClick={onOpenTryOn}
-                  className="px-4 py-2 bg-[#D4AF37] hover:bg-[#C5A059] text-stone-950 font-serif text-xs font-bold rounded-full transition-all shadow"
+                  onClick={onOpenAppointment}
+                  className="px-4 py-2 bg-[#D4AF37] hover:bg-[#C5A059] text-stone-950 font-serif text-xs font-bold rounded-full transition-all shadow flex items-center gap-1.5"
                 >
-                  Try On Live
+                  <Calendar className="w-3.5 h-3.5" /> Book Visit
                 </button>
               </div>
 

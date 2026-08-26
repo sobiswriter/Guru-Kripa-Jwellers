@@ -1,10 +1,12 @@
 import { JewelryProduct } from '../types';
 
+export const FALLBACK_JEWELRY_IMAGE = 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&q=80&w=1200';
+
 export const PRODUCTS: JewelryProduct[] = [
   {
     id: 'gold-royal-punjabi-kada',
     name: 'Pure 22K Royal Punjabi Gold Kada',
-    subtitle: 'Hand-Engraved Traditional Solid Gold Kada with Lion/Floral Filigree',
+    subtitle: 'Hand-Engraved Traditional Solid Gold Kada with Lion & Floral Filigree',
     category: 'kadas',
     collection: 'Heritage Punjabi Gold Collection',
     price: 185000,
@@ -14,14 +16,14 @@ export const PRODUCTS: JewelryProduct[] = [
     goldWeight: '24.50 grams (approx. 2.1 tola)',
     purity: '22K BIS 916 Hallmarked Gold',
     makingCharges: 'Direct In-House Karigar Rate',
-    mainImage: 'https://images.unsplash.com/photo-1611591475196-8579d46e31cb?auto=format&fit=crop&q=80&w=1200',
+    mainImage: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&q=80&w=1200',
     galleryImages: [
-      'https://images.unsplash.com/photo-1611591475196-8579d46e31cb?auto=format&fit=crop&q=80&w=1600',
-      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=1600'
+      'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&q=80&w=1600',
+      'https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&q=80&w=1600'
     ],
-    highResZoomImage: 'https://images.unsplash.com/photo-1611591475196-8579d46e31cb?auto=format&fit=crop&q=80&w=2400',
+    highResZoomImage: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&q=80&w=2400',
     tryOnType: 'ring',
-    tryOnOverlayImage: 'https://images.unsplash.com/photo-1611591475196-8579d46e31cb?auto=format&fit=crop&q=80&w=800',
+    tryOnOverlayImage: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&q=80&w=800',
     tryOnScaleDefault: 0.42,
     description: 'A signature solid Punjabi kada hand-crafted by master goldsmiths in Phagwara. Features traditional floral carving, mirror-polished inner comfort-fit, and genuine 916 BIS Hallmark stamping.',
     gemstoneSpec: {
@@ -134,7 +136,8 @@ export const PRODUCTS: JewelryProduct[] = [
     purity: '22K BIS 916 Hallmarked',
     mainImage: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&q=80&w=1200',
     galleryImages: [
-      'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&q=80&w=1600'
+      'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&q=80&w=1600',
+      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80&w=1600'
     ],
     highResZoomImage: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&q=80&w=2400',
     description: 'Traditional Punjabi jhumkas featuring delicate filigree lattice bells and hand-strung gold droplets. Lightweight screw-back design ensures comfortable wear for festive celebrations and weddings.',
@@ -270,11 +273,11 @@ export const PRODUCTS: JewelryProduct[] = [
     reviewCount: 92,
     goldWeight: '15.60 grams',
     purity: '22K BIS 916 Hallmarked',
-    mainImage: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80&w=1200',
+    mainImage: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80&w=1200',
     galleryImages: [
-      'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80&w=1600'
+      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80&w=1600'
     ],
-    highResZoomImage: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80&w=2400',
+    highResZoomImage: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80&w=2400',
     description: 'A durable, high-polish 22K gold chain built for regular daily wear. Interlocking solid links prevent breakage, tested with BIS hallmark laser stamping at the lock.',
     gemstoneSpec: {
       type: '22K Solid Gold Machine Interlink',

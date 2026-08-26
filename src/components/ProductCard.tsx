@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Eye, ZoomIn, Star, ShoppingBag, Check, ShieldCheck } from 'lucide-react';
+import { Eye, ZoomIn, Star, Calendar, MessageCircle, ShieldCheck } from 'lucide-react';
 import { JewelryProduct, MetalType } from '../types';
 
 interface ProductCardProps {
   product: JewelryProduct;
   onOpenTryOn: (product: JewelryProduct) => void;
   onOpenLoupe: (product: JewelryProduct) => void;
-  onAddToCart: (product: JewelryProduct, metal: MetalType, size: string) => void;
+  onOpenAppointment: (product: JewelryProduct) => void;
   onSelectProduct: (product: JewelryProduct) => void;
 }
 
@@ -14,23 +14,19 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   product,
   onOpenTryOn,
   onOpenLoupe,
-  onAddToCart,
+  onOpenAppointment,
   onSelectProduct
 }) => {
   const [selectedMetal, setSelectedMetal] = useState<MetalType>(
     product.metalsAvailable[0]?.type || '22k-yellow-gold'
   );
   const [isHovered, setIsHovered] = useState(false);
-  const [justAdded, setJustAdded] = useState(false);
 
   const secondImage = product.galleryImages?.[1] || product.mainImage;
 
-  const handleQuickAdd = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setJustAdded(true);
-    onAddToCart(product, selectedMetal, product.sizesAvailable?.[0] || 'Standard');
-    setTimeout(() => setJustAdded(false), 800);
-  };
+  const whatsappUrl = `https://wa.me/917508500417?text=${encodeURIComponent(
+    `Hello Shri Guru Kirpa Jewellers, I would like to inquire about "${product.name}" (${product.purity || '22K Gold'}, Approx ₹${product.price.toLocaleString('en-IN')}). Is this piece currently available to view at your Phagwara shop?`
+  )}`;
 
   return (
     <div
@@ -45,6 +41,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <img
             src={isHovered ? secondImage : product.mainImage}
             alt={product.name}
+            referrerPolicy="no-referrer"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&q=80&w=1200';
+            }}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
 
@@ -147,19 +147,23 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </div>
       </div>
 
-      {/* Card Action Footer */}
-      <div className="px-5 pb-5 pt-1">
+      {/* Card Action Footer: Visit & Contact buttons */}
+      <div className="px-5 pb-5 pt-1 grid grid-cols-2 gap-2" onClick={(e) => e.stopPropagation()}>
         <button
-          onClick={handleQuickAdd}
-          disabled={justAdded}
-          className="w-full py-2.5 bg-[#2D2926] hover:bg-[#1A1817] text-[#E8DCC4] text-xs font-serif font-semibold rounded-xl transition-all shadow-sm flex items-center justify-center gap-1.5"
+          onClick={() => onOpenAppointment(product)}
+          className="w-full py-2.5 bg-[#9D825E] hover:bg-[#886F4E] text-white text-xs font-serif font-bold rounded-xl transition-all shadow-sm flex items-center justify-center gap-1.5"
         >
-          {justAdded ? (
-            <span className="flex items-center gap-1 text-emerald-300"><Check className="w-3.5 h-3.5" /> Added to Inquiry Bag</span>
-          ) : (
-            <span className="flex items-center gap-1"><ShoppingBag className="w-3.5 h-3.5 text-[#D4AF37]" /> Add to Inquiry Bag</span>
-          )}
+          <Calendar className="w-3.5 h-3.5" /> Book Visit
         </button>
+
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="w-full py-2.5 bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-serif font-bold rounded-xl transition-all shadow-sm flex items-center justify-center gap-1.5 text-center"
+        >
+          <MessageCircle className="w-3.5 h-3.5" /> Inquire
+        </a>
       </div>
 
     </div>

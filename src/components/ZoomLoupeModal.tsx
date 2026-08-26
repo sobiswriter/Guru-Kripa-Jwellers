@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react';
-import { X, ZoomIn, RotateCcw, ShieldCheck, Sparkles, Award, ShoppingBag, Eye, Feather } from 'lucide-react';
+import { X, ZoomIn, RotateCcw, ShieldCheck, Calendar, Eye, Feather, MessageCircle, Phone } from 'lucide-react';
 import { JewelryProduct, MetalType } from '../types';
 
 interface ZoomLoupeModalProps {
   isOpen: boolean;
   onClose: () => void;
   product: JewelryProduct | null;
-  onAddToCart: (product: JewelryProduct, metal: MetalType, size: string, engraving?: string) => void;
+  onOpenAppointment: (product: JewelryProduct) => void;
   onOpenTryOn: (product: JewelryProduct) => void;
 }
 
@@ -14,7 +14,7 @@ export const ZoomLoupeModal: React.FC<ZoomLoupeModalProps> = ({
   isOpen,
   onClose,
   product,
-  onAddToCart,
+  onOpenAppointment,
   onOpenTryOn
 }) => {
   if (!isOpen || !product) return null;
@@ -33,9 +33,11 @@ export const ZoomLoupeModal: React.FC<ZoomLoupeModalProps> = ({
 
   // Custom Metal & Engraving
   const [selectedMetal, setSelectedMetal] = useState<MetalType>(
-    product.metalsAvailable[0]?.type || 'platinum'
+    product.metalsAvailable[0]?.type || '22k-yellow-gold'
   );
   const [engravingText, setEngravingText] = useState<string>('');
+
+  const fallbackImg = 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&q=80&w=1200';
 
   // Handle loupe mouse move over image
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -65,6 +67,8 @@ export const ZoomLoupeModal: React.FC<ZoomLoupeModalProps> = ({
   const handleMouseUp360 = () => {
     isDraggingRef.current = false;
   };
+
+  const whatsappInquiryText = `Hello Shri Guru Kirpa Jewellers, I am interested in viewing "${product.name}" (${product.purity || '22K Gold'}, ₹${product.price.toLocaleString('en-IN')})${engravingText ? ` with custom engraving: "${engravingText}"` : ''}. Can I book an appointment to see it in person?`;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-2 md:p-6 overflow-y-auto">
@@ -128,6 +132,10 @@ export const ZoomLoupeModal: React.FC<ZoomLoupeModalProps> = ({
                 <img
                   src={product.highResZoomImage || product.mainImage}
                   alt={product.name}
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = fallbackImg;
+                  }}
                   className="w-full max-h-[520px] object-contain"
                 />
 
@@ -189,6 +197,10 @@ export const ZoomLoupeModal: React.FC<ZoomLoupeModalProps> = ({
                 <img
                   src={product.mainImage}
                   alt="360 view"
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = fallbackImg;
+                  }}
                   className="max-h-[460px] object-contain drop-shadow-[0_20px_50px_rgba(212,175,55,0.2)]"
                 />
               </div>
@@ -206,7 +218,7 @@ export const ZoomLoupeModal: React.FC<ZoomLoupeModalProps> = ({
               <div className="flex justify-between items-start border-b border-amber-800/20 pb-4 mb-4">
                 <div>
                   <div className="flex items-center gap-2">
-                    <Award className="w-6 h-6 text-amber-700" />
+                    <ShieldCheck className="w-6 h-6 text-amber-700" />
                     <h3 className="font-serif text-xl font-bold text-amber-950">BIS Hallmark & Purity Guarantee</h3>
                   </div>
                   <p className="text-xs text-stone-500 font-serif italic mt-0.5">Bureau of Indian Standards & Shri Guru Kirpa Authenticity Certificate</p>
@@ -222,8 +234,8 @@ export const ZoomLoupeModal: React.FC<ZoomLoupeModalProps> = ({
                   <span className="font-bold text-base text-stone-900">{product.purity || '22K (916 Hallmarked)'}</span>
                 </div>
                 <div className="p-3 bg-white rounded-xl border border-stone-200">
-                  <span className="text-stone-500 uppercase font-serif text-[10px] block">Net Gold Weight</span>
-                  <span className="font-bold text-base text-stone-900">{product.weight || '38.5 grams'}</span>
+                  <span className="text-stone-500 uppercase font-serif text-[10px] block">Gold Weight</span>
+                  <span className="font-bold text-base text-stone-900">{product.goldWeight || '24.50 grams'}</span>
                 </div>
                 <div className="p-3 bg-white rounded-xl border border-stone-200">
                   <span className="text-stone-500 uppercase font-serif text-[10px] block">Goldsmith Workshop</span>
@@ -328,29 +340,47 @@ export const ZoomLoupeModal: React.FC<ZoomLoupeModalProps> = ({
             )}
           </div>
 
-          {/* Actions Footer */}
+          {/* Actions Footer - Book In-Store Visit & Contact */}
           <div className="space-y-2.5 pt-4 border-t border-[#e6dfd5]">
+            <button
+              onClick={() => {
+                onClose();
+                onOpenAppointment(product);
+              }}
+              className="w-full py-3.5 bg-[#9D825E] hover:bg-[#886F4E] text-white rounded-xl font-serif text-sm font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
+            >
+              <Calendar className="w-4 h-4" /> Book In-Store Visit to View This Piece
+            </button>
+
+            <div className="grid grid-cols-2 gap-2">
+              <a
+                href={`https://wa.me/917508500417?text=${encodeURIComponent(whatsappInquiryText)}`}
+                target="_blank"
+                rel="noreferrer"
+                className="py-2.5 bg-emerald-700 hover:bg-emerald-600 text-white rounded-xl font-serif text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm text-center"
+              >
+                <MessageCircle className="w-3.5 h-3.5" /> WhatsApp Us
+              </a>
+
+              <a
+                href="tel:+917508500417"
+                className="py-2.5 bg-[#2D2926] hover:bg-stone-800 text-[#E8DCC4] rounded-xl font-serif text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm text-center"
+              >
+                <Phone className="w-3.5 h-3.5" /> Call Store
+              </a>
+            </div>
+
             {product.tryOnType && (
               <button
                 onClick={() => {
                   onClose();
                   onOpenTryOn(product);
                 }}
-                className="w-full py-3 bg-[#2D2926] text-[#D4AF37] rounded-xl font-serif text-sm font-bold hover:bg-stone-800 transition-all flex items-center justify-center gap-2 shadow"
+                className="w-full py-2.5 bg-stone-200/70 hover:bg-stone-200 text-[#2D2926] rounded-xl font-serif text-xs font-semibold transition-all flex items-center justify-center gap-1.5"
               >
-                <Eye className="w-4 h-4 text-[#D4AF37]" /> Launch Virtual Try-On Studio
+                <Eye className="w-3.5 h-3.5 text-[#9D825E]" /> AR Virtual Try-On
               </button>
             )}
-
-            <button
-              onClick={() => {
-                onAddToCart(product, selectedMetal, product.sizesAvailable?.[0] || 'Standard', engravingText);
-                onClose();
-              }}
-              className="w-full py-3.5 bg-[#9D825E] hover:bg-[#886F4E] text-white rounded-xl font-serif text-sm font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
-            >
-              <ShoppingBag className="w-4 h-4" /> Add to Inquiry Bag (₹{product.price.toLocaleString('en-IN')})
-            </button>
           </div>
 
         </div>

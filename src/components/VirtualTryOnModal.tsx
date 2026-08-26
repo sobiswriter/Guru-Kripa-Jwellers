@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Camera, Upload, RotateCw, ZoomIn, ZoomOut, Move, Download, ShoppingBag, Calendar, Check, X, Sparkles, RefreshCw, Layers } from 'lucide-react';
+import { Camera, Upload, RotateCw, ZoomIn, ZoomOut, Move, Download, Calendar, MessageCircle, Phone, X, Sparkles, RefreshCw, Layers } from 'lucide-react';
 import { JewelryProduct, MetalType } from '../types';
 import { PRODUCTS } from '../data/products';
 
@@ -7,7 +7,6 @@ interface VirtualTryOnModalProps {
   isOpen: boolean;
   onClose: () => void;
   initialProduct?: JewelryProduct;
-  onAddToCart: (product: JewelryProduct, metal: MetalType, size: string) => void;
   onBookAppointment: (product?: JewelryProduct) => void;
 }
 
@@ -28,7 +27,6 @@ export const VirtualTryOnModal: React.FC<VirtualTryOnModalProps> = ({
   isOpen,
   onClose,
   initialProduct,
-  onAddToCart,
   onBookAppointment
 }) => {
   if (!isOpen) return null;
@@ -45,12 +43,12 @@ export const VirtualTryOnModal: React.FC<VirtualTryOnModalProps> = ({
 
   // Metal selection
   const [selectedMetal, setSelectedMetal] = useState<MetalType>(
-    selectedProduct.metalsAvailable[0]?.type || 'platinum'
+    selectedProduct.metalsAvailable[0]?.type || '22k-yellow-gold'
   );
 
   // Size selection
   const [selectedSize, setSelectedSize] = useState<string>(
-    selectedProduct.sizesAvailable ? selectedProduct.sizesAvailable[2] || selectedProduct.sizesAvailable[0] : 'US 6.0'
+    selectedProduct.sizesAvailable ? selectedProduct.sizesAvailable[2] || selectedProduct.sizesAvailable[0] : 'Standard'
   );
 
   // Camera vs Image Source
@@ -73,7 +71,6 @@ export const VirtualTryOnModal: React.FC<VirtualTryOnModalProps> = ({
   // Canvas composite ref
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [capturedPhoto, setCapturedPhoto] = useState<string | null>(null);
-  const [isAdding, setIsAdding] = useState<boolean>(false);
 
   // Change mode when product changes
   useEffect(() => {
@@ -181,7 +178,7 @@ export const VirtualTryOnModal: React.FC<VirtualTryOnModalProps> = ({
         const height = width * (jewelryImg.height / jewelryImg.width);
 
         // Apply metal tint filter if needed
-        if (selectedMetal === '18k-yellow-gold') {
+        if (selectedMetal === '22k-yellow-gold') {
           ctx.filter = 'sepia(0.6) saturate(1.8) hue-rotate(5deg)';
         } else if (selectedMetal === 'rose-gold') {
           ctx.filter = 'sepia(0.5) saturate(1.5) hue-rotate(320deg)';
@@ -221,13 +218,7 @@ export const VirtualTryOnModal: React.FC<VirtualTryOnModalProps> = ({
     link.click();
   };
 
-  const handleAddToCartClick = () => {
-    setIsAdding(true);
-    onAddToCart(selectedProduct, selectedMetal, selectedSize);
-    setTimeout(() => {
-      setIsAdding(false);
-    }, 600);
-  };
+  const whatsappInquiryText = `Hello Shri Guru Kirpa Jewellers, I tried the virtual AR fitting for "${selectedProduct.name}" (${selectedProduct.purity || '22K Gold'}, ₹${selectedProduct.price.toLocaleString('en-IN')}). I would like to visit the Phagwara store to try it in person.`;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-2 md:p-6 overflow-y-auto">
@@ -336,6 +327,10 @@ export const VirtualTryOnModal: React.FC<VirtualTryOnModalProps> = ({
             <img
               src={getBackgroundImage()}
               alt="Model Hand or Neckline background for AR fitting"
+              referrerPolicy="no-referrer"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&q=80&w=1000';
+              }}
               className="w-full h-full object-cover max-h-[600px] pointer-events-none"
             />
           )}
@@ -355,7 +350,7 @@ export const VirtualTryOnModal: React.FC<VirtualTryOnModalProps> = ({
               left: `${posX}%`,
               top: `${posY}%`,
               transform: `translate(-50%, -50%) rotate(${rotation}deg) scale(${scale})`,
-              filter: selectedMetal === '18k-yellow-gold'
+              filter: selectedMetal === '22k-yellow-gold'
                 ? `sepia(0.5) saturate(2) hue-rotate(10deg) brightness(${brightness}%)`
                 : selectedMetal === 'rose-gold'
                 ? `sepia(0.4) saturate(1.8) hue-rotate(325deg) brightness(${brightness}%)`
@@ -365,6 +360,10 @@ export const VirtualTryOnModal: React.FC<VirtualTryOnModalProps> = ({
             <img
               src={selectedProduct.tryOnOverlayImage || selectedProduct.mainImage}
               alt={selectedProduct.name}
+              referrerPolicy="no-referrer"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&q=80&w=800';
+              }}
               className={`object-contain drop-shadow-2xl ${
                 mode === 'ring' ? 'w-48 h-48 md:w-56 md:h-56' : 'w-72 h-72 md:w-96 md:h-96'
               }`}
@@ -435,16 +434,16 @@ export const VirtualTryOnModal: React.FC<VirtualTryOnModalProps> = ({
                 ₹{selectedProduct.price.toLocaleString('en-IN')}
               </p>
               <p className="text-xs text-stone-600 mt-1 line-clamp-2">
-                {selectedProduct.weight} • {selectedProduct.purity} • {selectedProduct.gemstoneSpec.type}
+                {selectedProduct.goldWeight || selectedProduct.weight} • {selectedProduct.purity} • {selectedProduct.gemstoneSpec.type}
               </p>
             </div>
 
             {/* Metal Selection Toggles */}
             <div className="mb-5">
               <label className="block text-xs font-serif uppercase tracking-widest text-stone-600 mb-2">
-                Choose Precious Metal
+                Choose Gold Finish
               </label>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                 {selectedProduct.metalsAvailable.map((metal) => (
                   <button
                     key={metal.type}
@@ -459,7 +458,7 @@ export const VirtualTryOnModal: React.FC<VirtualTryOnModalProps> = ({
                       className="w-3 h-3 rounded-full border border-stone-300 shadow-inner"
                       style={{ backgroundColor: metal.hexColor }}
                     />
-                    {metal.label.replace('18K ', '').replace('Platinum 950', 'Platinum')}
+                    {metal.label.replace('22K ', '').replace('18K ', '')}
                   </button>
                 ))}
               </div>
@@ -470,7 +469,7 @@ export const VirtualTryOnModal: React.FC<VirtualTryOnModalProps> = ({
               <div className="mb-5">
                 <div className="flex justify-between items-center mb-1.5">
                   <label className="text-xs font-serif uppercase tracking-widest text-stone-600">
-                    {mode === 'ring' ? 'Select Ring Size' : 'Select Chain Length'}
+                    {mode === 'ring' ? 'Select Ring Size' : 'Select Length'}
                   </label>
                   <span className="text-xs text-amber-800 font-medium">Size Guide</span>
                 </div>
@@ -579,7 +578,7 @@ export const VirtualTryOnModal: React.FC<VirtualTryOnModalProps> = ({
 
           </div>
 
-          {/* Action Buttons */}
+          {/* Action Buttons: Book Visit & Contact */}
           <div className="space-y-2.5 pt-3 border-t border-[#e6dfd5]">
             <button
               onClick={captureComposite}
@@ -589,26 +588,32 @@ export const VirtualTryOnModal: React.FC<VirtualTryOnModalProps> = ({
             </button>
 
             <button
-              onClick={handleAddToCartClick}
-              disabled={isAdding}
-              className="w-full py-3 bg-amber-500 hover:bg-amber-400 text-stone-950 rounded-xl font-serif text-sm font-semibold transition-all flex items-center justify-center gap-2 shadow-md"
-            >
-              {isAdding ? (
-                <span className="flex items-center gap-2"><Check className="w-4 h-4" /> Added to Bag</span>
-              ) : (
-                <span className="flex items-center gap-2"><ShoppingBag className="w-4 h-4" /> Add to Order (₹{selectedProduct.price.toLocaleString('en-IN')})</span>
-              )}
-            </button>
-
-            <button
               onClick={() => {
                 onClose();
                 onBookAppointment(selectedProduct);
               }}
-              className="w-full py-2.5 bg-white border border-[#e6dfd5] text-stone-800 hover:bg-stone-50 rounded-xl text-xs font-serif font-medium transition-all flex items-center justify-center gap-1.5"
+              className="w-full py-3.5 bg-[#9D825E] hover:bg-[#886F4E] text-white rounded-xl font-serif text-sm font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
             >
-              <Calendar className="w-3.5 h-3.5 text-amber-700" /> Book In-Store VIP Consultation
+              <Calendar className="w-4 h-4" /> Book In-Store Visit for this Design
             </button>
+
+            <div className="grid grid-cols-2 gap-2">
+              <a
+                href={`https://wa.me/917508500417?text=${encodeURIComponent(whatsappInquiryText)}`}
+                target="_blank"
+                rel="noreferrer"
+                className="py-2.5 bg-emerald-700 hover:bg-emerald-600 text-white rounded-xl font-serif text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm text-center"
+              >
+                <MessageCircle className="w-3.5 h-3.5" /> WhatsApp Inquire
+              </a>
+
+              <a
+                href="tel:+917508500417"
+                className="py-2.5 bg-[#2D2926] hover:bg-stone-800 text-[#E8DCC4] rounded-xl font-serif text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm text-center"
+              >
+                <Phone className="w-3.5 h-3.5" /> Call Store
+              </a>
+            </div>
           </div>
 
         </div>

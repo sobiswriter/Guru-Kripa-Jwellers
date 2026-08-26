@@ -5,8 +5,6 @@ import { JewelryCategory } from '../types';
 interface HeaderProps {
   activeCategory: JewelryCategory | 'all' | 'collections';
   onSelectCategory: (cat: JewelryCategory | 'all' | 'collections') => void;
-  cartCount: number;
-  onOpenCart: () => void;
   onOpenTryOn: () => void;
   onOpenAppointment: () => void;
   onOpenConcierge: () => void;
@@ -17,8 +15,6 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({
   activeCategory,
   onSelectCategory,
-  cartCount,
-  onOpenCart,
   onOpenTryOn,
   onOpenAppointment,
   onOpenConcierge,
@@ -134,24 +130,10 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Book In-Store Visit */}
             <button
               onClick={onOpenAppointment}
-              className="hidden lg:flex px-3.5 py-1.5 bg-white border border-[#E8E1D5] text-[#2D2926] hover:border-[#9D825E] rounded-full text-xs font-serif font-medium transition-all items-center gap-1.5"
+              className="px-4 py-2 bg-[#9D825E] hover:bg-[#886F4E] text-white rounded-full text-xs font-serif font-bold transition-all flex items-center gap-1.5 shadow-sm"
             >
-              <Calendar className="w-3.5 h-3.5 text-[#9D825E]" />
+              <Calendar className="w-3.5 h-3.5" />
               <span>Book Visit</span>
-            </button>
-
-            {/* Shopping Bag Button */}
-            <button
-              onClick={onOpenCart}
-              className="relative p-2 text-[#2D2926] hover:text-[#9D825E] transition-colors"
-              title="Saved Items / Inquiries"
-            >
-              <ShoppingBag className="w-6 h-6" />
-              {cartCount > 0 && (
-                <span className="absolute top-0 right-0 w-5 h-5 bg-[#D4AF37] text-[#2D2926] rounded-full text-[10px] font-bold flex items-center justify-center shadow">
-                  {cartCount}
-                </span>
-              )}
             </button>
           </div>
 

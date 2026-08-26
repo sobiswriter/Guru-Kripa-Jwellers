@@ -4,9 +4,8 @@
  */
 
 import React, { useState } from 'react';
-import { JewelryCategory, JewelryProduct, MetalType, StoreLocation, CartItem } from './types';
+import { JewelryCategory, JewelryProduct, StoreLocation } from './types';
 import { PRODUCTS } from './data/products';
-import { STORES } from './data/stores';
 import { SPECIAL_COLLECTIONS } from './data/reviews';
 
 import { Header } from './components/Header';
@@ -17,22 +16,17 @@ import { ZoomLoupeModal } from './components/ZoomLoupeModal';
 import { StoreLocator } from './components/StoreLocator';
 import { AppointmentModal } from './components/AppointmentModal';
 import { ReviewsSection } from './components/ReviewsSection';
-import { CheckoutModal } from './components/CheckoutModal';
 import { AuraConciergeDrawer } from './components/AuraConciergeDrawer';
 import { Footer } from './components/Footer';
 import { MobileSimplifiedView } from './components/MobileSimplifiedView';
 
-import { Sparkles, Eye, ZoomIn, Filter, Check, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Sparkles, Filter, ArrowRight } from 'lucide-react';
 
 export default function App() {
   // Navigation & Category state
   const [activeCategory, setActiveCategory] = useState<JewelryCategory | 'all' | 'collections'>('all');
   const [selectedMetalFilter, setSelectedMetalFilter] = useState<string>('all');
   const [selectedStoneFilter, setSelectedStoneFilter] = useState<string>('all');
-
-  // Cart / Shopping Bag state
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [isCartOpen, setIsCartOpen] = useState(false);
 
   // Modals state
   const [isTryOnOpen, setIsTryOnOpen] = useState(false);
@@ -53,54 +47,6 @@ export default function App() {
   const showToast = (msg: string) => {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(null), 3000);
-  };
-
-  // Add to Bag handler
-  const handleAddToCart = (
-    product: JewelryProduct,
-    selectedMetal: MetalType,
-    selectedSize?: string,
-    engravingText?: string
-  ) => {
-    setCartItems(prev => {
-      const existing = prev.find(
-        i => i.product.id === product.id && i.selectedMetal === selectedMetal && i.selectedSize === selectedSize
-      );
-      if (existing) {
-        return prev.map(i =>
-          i === existing ? { ...i, quantity: i.quantity + 1 } : i
-        );
-      }
-      return [
-        ...prev,
-        {
-          product,
-          selectedMetal,
-          selectedSize,
-          engravingText,
-          quantity: 1
-        }
-      ];
-    });
-    showToast(`Added ${product.name} to Shopping Bag.`);
-  };
-
-  const handleUpdateQuantity = (productId: string, quantity: number) => {
-    if (quantity <= 0) {
-      handleRemoveItem(productId);
-      return;
-    }
-    setCartItems(prev =>
-      prev.map(i => (i.product.id === productId ? { ...i, quantity } : i))
-    );
-  };
-
-  const handleRemoveItem = (productId: string) => {
-    setCartItems(prev => prev.filter(i => i.product.id !== productId));
-  };
-
-  const handleClearCart = () => {
-    setCartItems([]);
   };
 
   // Filter products
@@ -151,11 +97,11 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fdfbf7] text-[#1a1817] font-sans antialiased selection:bg-amber-200 selection:text-amber-950">
+    <div className="min-h-screen bg-[#FAF8F5] text-[#2D2926] font-sans antialiased selection:bg-[#FAF3E0] selection:text-[#5C4524]">
       
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 bg-stone-900 text-amber-200 px-5 py-3 rounded-2xl shadow-2xl border border-amber-500/40 font-serif text-xs flex items-center gap-2 animate-bounce">
+        <div className="fixed bottom-6 right-6 z-50 bg-[#2D2926] text-amber-200 px-5 py-3 rounded-2xl shadow-2xl border border-[#9D825E]/40 font-serif text-xs flex items-center gap-2 animate-bounce">
           <Sparkles className="w-4 h-4 text-amber-400" />
           {toastMessage}
         </div>
@@ -174,8 +120,6 @@ export default function App() {
         <Header
           activeCategory={activeCategory}
           onSelectCategory={setActiveCategory}
-          cartCount={cartItems.reduce((sum, i) => sum + i.quantity, 0)}
-          onOpenCart={() => setIsCartOpen(true)}
           onOpenTryOn={() => handleOpenTryOnForProduct(PRODUCTS[0])}
           onOpenAppointment={() => handleOpenAppointment()}
           onOpenConcierge={() => setIsConciergeOpen(true)}
@@ -222,7 +166,7 @@ export default function App() {
                 <select
                   value={selectedMetalFilter}
                   onChange={e => setSelectedMetalFilter(e.target.value)}
-                  className="bg-transparent text-[#2D2926] font-medium focus:outline-none"
+                  className="bg-transparent text-[#2D2926] font-medium focus:outline-none cursor-pointer"
                 >
                   <option value="all">All Finishes</option>
                   <option value="18k-yellow-gold">22K / 24K Yellow Gold</option>
@@ -236,7 +180,7 @@ export default function App() {
                 <select
                   value={selectedStoneFilter}
                   onChange={e => setSelectedStoneFilter(e.target.value)}
-                  className="bg-transparent text-[#2D2926] font-medium focus:outline-none"
+                  className="bg-transparent text-[#2D2926] font-medium focus:outline-none cursor-pointer"
                 >
                   <option value="all">All Styles</option>
                   <option value="gold">Pure Gold / Filigree</option>
@@ -256,7 +200,7 @@ export default function App() {
                 product={product}
                 onOpenTryOn={handleOpenTryOnForProduct}
                 onOpenLoupe={handleOpenLoupeForProduct}
-                onAddToCart={handleAddToCart}
+                onOpenAppointment={(prod) => handleOpenAppointment(undefined, prod)}
                 onSelectProduct={handleOpenLoupeForProduct}
               />
             ))}
@@ -267,31 +211,35 @@ export default function App() {
             {SPECIAL_COLLECTIONS.map((col) => (
               <div
                 key={col.id}
-                className="bg-stone-900 text-white rounded-3xl overflow-hidden border border-amber-500/30 shadow-2xl grid grid-cols-1 lg:grid-cols-12 items-center"
+                className="bg-[#2D2926] text-white rounded-3xl overflow-hidden border border-[#9D825E]/40 shadow-2xl grid grid-cols-1 lg:grid-cols-12 items-center"
               >
                 <div className="lg:col-span-6 p-8 md:p-12 space-y-4">
-                  <span className="text-xs font-serif uppercase tracking-[0.25em] text-amber-400 font-bold block">
+                  <span className="text-xs font-serif uppercase tracking-[0.25em] text-[#D4AF37] font-bold block">
                     Featured Heritage Collection
                   </span>
-                  <h3 className="text-3xl md:text-4xl font-serif text-amber-100 font-medium leading-tight">
+                  <h3 className="text-3xl md:text-4xl font-serif text-[#FAF3E0] font-medium leading-tight">
                     {col.title}
                   </h3>
-                  <p className="text-amber-300/90 font-serif italic text-sm">{col.subtitle}</p>
+                  <p className="text-[#D4AF37]/90 font-serif italic text-sm">{col.subtitle}</p>
                   <p className="text-stone-300 text-xs leading-relaxed font-light">{col.description}</p>
                   <div className="pt-2">
                     <button
                       onClick={() => setActiveCategory('collections')}
-                      className="px-6 py-2.5 bg-amber-400 hover:bg-amber-300 text-stone-950 font-serif text-xs font-bold rounded-full transition-all flex items-center gap-2 shadow"
+                      className="px-6 py-2.5 bg-[#9D825E] hover:bg-[#886F4E] text-white font-serif text-xs font-bold rounded-full transition-all flex items-center gap-2 shadow"
                     >
                       Explore Collection Masterpieces <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
                 </div>
 
-                <div className="lg:col-span-6 h-80 lg:h-full relative overflow-hidden">
+                <div className="lg:col-span-6 h-80 lg:h-full relative overflow-hidden bg-stone-900">
                   <img
                     src={col.heroImage}
                     alt={col.title}
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=1200';
+                    }}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -322,7 +270,6 @@ export default function App() {
         isOpen={isTryOnOpen}
         onClose={() => setIsTryOnOpen(false)}
         initialProduct={tryOnProduct}
-        onAddToCart={handleAddToCart}
         onBookAppointment={(prod) => handleOpenAppointment(undefined, prod)}
       />
 
@@ -330,7 +277,7 @@ export default function App() {
         isOpen={isLoupeOpen}
         onClose={() => setIsLoupeOpen(false)}
         product={loupeProduct}
-        onAddToCart={handleAddToCart}
+        onOpenAppointment={(prod) => handleOpenAppointment(undefined, prod)}
         onOpenTryOn={handleOpenTryOnForProduct}
       />
 
@@ -339,15 +286,6 @@ export default function App() {
         onClose={() => setIsAppointmentOpen(false)}
         initialStore={appointmentStore}
         initialProduct={appointmentProduct}
-      />
-
-      <CheckoutModal
-        isOpen={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
-        cartItems={cartItems}
-        onUpdateQuantity={handleUpdateQuantity}
-        onRemoveItem={handleRemoveItem}
-        onClearCart={handleClearCart}
       />
 
       <AuraConciergeDrawer

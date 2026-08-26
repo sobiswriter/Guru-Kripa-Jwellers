@@ -112,6 +112,10 @@ export const StoreLocator: React.FC<StoreLocatorProps> = ({ onBookAppointment })
               <img
                 src={activeStore.image}
                 alt={activeStore.name}
+                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=1200';
+                }}
                 className="w-full h-full object-cover opacity-50"
               />
 

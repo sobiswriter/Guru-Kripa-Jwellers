@@ -236,6 +236,10 @@ export const MobileSimplifiedView: React.FC<MobileSimplifiedViewProps> = () => {
                     <img
                       src={prod.mainImage}
                       alt={prod.name}
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&q=80&w=600';
+                      }}
                       className="w-full h-full object-cover"
                     />
                     {prod.purity && (
@@ -684,6 +688,10 @@ export const MobileSimplifiedView: React.FC<MobileSimplifiedViewProps> = () => {
                 <img
                   src={selectedProduct.mainImage}
                   alt={selectedProduct.name}
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&q=80&w=800';
+                  }}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute top-2.5 right-2.5 bg-black/75 text-[#D4AF37] text-[10px] font-bold px-2 py-1 rounded-full font-serif backdrop-blur-xs">
